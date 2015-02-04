@@ -21,3 +21,10 @@ them. The two programs share a format contract (`docs/FORMAT.md`), not code.
 src/slotdrift/
   __init__.py       __version__ only
   __main__.py       python -m slotdrift entry point
+  model.py          SlotRecord, validation, JSONL parsing
+  continuity.py     window analysis: gaps, skips, parent links, leaders
+  forks.py          chain shape: duplicates, canonical ancestry, orphans
+  report.py         deterministic text and JSON rendering
+  cli.py            argparse, subcommands, exit codes, file IO
+```
+
