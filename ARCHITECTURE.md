@@ -14,3 +14,10 @@ disk and no configuration file.
 The Rust engine in `engine/` is a second implementation of the same
 arithmetic. It exists to cross-check the Python rules, not to be called by
 them. The two programs share a format contract (`docs/FORMAT.md`), not code.
+
+## Python modules
+
+```
+src/slotdrift/
+  __init__.py       __version__ only
+  __main__.py       python -m slotdrift entry point
