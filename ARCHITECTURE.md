@@ -36,3 +36,10 @@ every validation rule in one place, and `parse_text` collects errors with
 their line numbers instead of raising. That decision is fundamental: a
 malformed export is a finding about the export, not a reason to stop reading
 the file. A partially readable file still produces a full report, with the bad
+lines listed at the end.
+
+Validation is strict about fields that carry meaning (slot, parent,
+commitment, tx_count ranges, skipped records carrying no blockhash) and
+liberal about unknown keys, because exports recorded by different harnesses
+add fields that this tool has no opinion about.
+
