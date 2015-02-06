@@ -28,3 +28,11 @@ src/slotdrift/
   cli.py            argparse, subcommands, exit codes, file IO
 ```
 
+### model.py
+
+Owns everything that can be said about a single line. `SlotRecord` is frozen,
+so no later stage can accidentally mutate parsed data. `parse_record` applies
+every validation rule in one place, and `parse_text` collects errors with
+their line numbers instead of raising. That decision is fundamental: a
+malformed export is a finding about the export, not a reason to stop reading
+the file. A partially readable file still produces a full report, with the bad
