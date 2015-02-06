@@ -43,3 +43,10 @@ commitment, tx_count ranges, skipped records carrying no blockhash) and
 liberal about unknown keys, because exports recorded by different harnesses
 add fields that this tool has no opinion about.
 
+### continuity.py
+
+Answers questions about the window as a sequence: which slot numbers have no
+record, which slots claim more than one record, which parent links are
+impossible, which slots were explicitly skipped, and how often each leader
+skipped. Its only input is the record list; it never looks at blockhashes
+beyond counting records per slot.
