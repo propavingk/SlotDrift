@@ -64,3 +64,10 @@ Answers shape questions that are independent of gaps: where did two blocks
 compete for one slot, which chain is canonical, and which produced blocks sit
 outside it. Canonical selection is deterministic and documented in
 `docs/FORMAT.md`: strongest commitment, then highest slot, then smallest
+blockhash. From the chosen tip the walk follows parent links through the best
+record per slot.
+
+The orphan test compares identities, not slot numbers. Two blocks can claim
+the same slot; if the loser is compared by slot number it silently disappears
+from the orphan count. That exact bug was caught by the fixture in this
+repository and is why `identity()` exists.
