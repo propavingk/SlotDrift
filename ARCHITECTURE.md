@@ -71,3 +71,11 @@ The orphan test compares identities, not slot numbers. Two blocks can claim
 the same slot; if the loser is compared by slot number it silently disappears
 from the orphan count. That exact bug was caught by the fixture in this
 repository and is why `identity()` exists.
+
+Orphan segments then group orphaned blocks by following parent links inside
+the orphaned set, so a rival three-slot branch is reported as one segment with
+a single attachment point rather than three unrelated blocks.
+
+### report.py
+
+Two renderers over one `Analysis` object. The text renderer is line oriented
