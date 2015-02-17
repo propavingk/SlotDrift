@@ -57,3 +57,10 @@ an ancestor. A block that steps over produced slots without a skip record is
 also an anomaly. A block whose parent falls just below the window is not an
 anomaly: every captured window starts mid chain, so the boundary case is
 normal and is documented rather than flagged.
+
+### forks.py
+
+Answers shape questions that are independent of gaps: where did two blocks
+compete for one slot, which chain is canonical, and which produced blocks sit
+outside it. Canonical selection is deterministic and documented in
+`docs/FORMAT.md`: strongest commitment, then highest slot, then smallest
