@@ -50,3 +50,10 @@ record, which slots claim more than one record, which parent links are
 impossible, which slots were explicitly skipped, and how often each leader
 skipped. Its only input is the record list; it never looks at blockhashes
 beyond counting records per slot.
+
+The subtle rule here is the parent check. A block whose parent slot is marked
+skipped is an anomaly, because a skipped slot produces no block and cannot be
+an ancestor. A block that steps over produced slots without a skip record is
+also an anomaly. A block whose parent falls just below the window is not an
+anomaly: every captured window starts mid chain, so the boundary case is
+normal and is documented rather than flagged.
