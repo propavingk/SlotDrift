@@ -93,3 +93,10 @@ purpose; everything it prints comes from the modules above.
 ## Rust engine
 
 ```
+engine/src/lib.rs    parse_line, parse_text, analyze_continuity, find_forks
+engine/src/main.rs   key: value output for the parity script
+engine/tests/        integration tests over the same fixtures
+```
+
+The parser is a small top level JSON object reader. It is not a general JSON
+parser and does not pretend to be one; it reads the fields this format defines
