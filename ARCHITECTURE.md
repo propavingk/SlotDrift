@@ -86,3 +86,10 @@ the two-run diff clean and what makes the parity script possible.
 
 ### cli.py
 
+Argument parsing, subcommand dispatch, file reading, output writing, and the
+mapping from findings to exit codes. The CLI contains no analysis logic on
+purpose; everything it prints comes from the modules above.
+
+## Rust engine
+
+```
