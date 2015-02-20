@@ -79,3 +79,10 @@ a single attachment point rather than three unrelated blocks.
 ### report.py
 
 Two renderers over one `Analysis` object. The text renderer is line oriented
+and truncates every list with an explicit `... N more` line; the JSON renderer
+mirrors the same numbers with sorted keys. Both are pure functions of the
+analysis: no clock, no randomness, no environment reads. That is what makes
+the two-run diff clean and what makes the parity script possible.
+
+### cli.py
+
