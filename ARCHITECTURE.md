@@ -100,3 +100,10 @@ engine/tests/        integration tests over the same fixtures
 
 The parser is a small top level JSON object reader. It is not a general JSON
 parser and does not pretend to be one; it reads the fields this format defines
+and skips nested containers in a balanced way. Value types are tracked
+(strings versus other tokens) so `"slot": "5"` fails the same way in both
+implementations.
+
+The continuity and fork functions mirror the Python rules one for one,
+including the boundary parent exception, the skipped parent rule, and the
+identity based orphan test. `engine/tests/engine.rs` asserts the same designed
