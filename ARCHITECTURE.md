@@ -107,3 +107,10 @@ implementations.
 The continuity and fork functions mirror the Python rules one for one,
 including the boundary parent exception, the skipped parent rule, and the
 identity based orphan test. `engine/tests/engine.rs` asserts the same designed
+counts as the Python tests over the same fixture files.
+
+## Data flow
+
+```
+export.jsonl
+    |
