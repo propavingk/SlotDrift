@@ -129,3 +129,10 @@ forks.find_forks (same records)  ->  ForkReport
              report.Analysis
                     |
         +-----------+------------+
+        v                        v
+  render_text             render_json
+        |                        |
+        v                        v
+   stdout or --output      stdout (--format json)
+                    |
+                    v
