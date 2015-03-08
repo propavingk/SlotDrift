@@ -136,3 +136,10 @@ forks.find_forks (same records)  ->  ForkReport
    stdout or --output      stdout (--format json)
                     |
                     v
+        exit code: findings ? 1 : 0
+```
+
+## Boundaries and why they fall there
+
+- Parsing is separate from analysis so validation errors are data. A file with
+  seven bad lines still produces a useful report about the other records.
