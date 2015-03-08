@@ -114,3 +114,11 @@ counts as the Python tests over the same fixture files.
 ```
 export.jsonl
     |
+    v
+model.parse_text  ->  records[] + errors[]
+    |                        |
+    |                        +--> report parse error section
+    v
+continuity.analyze_continuity  ->  ContinuityReport
+    |                                   |
+    v                                   |
