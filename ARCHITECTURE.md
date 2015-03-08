@@ -122,3 +122,10 @@ model.parse_text  ->  records[] + errors[]
 continuity.analyze_continuity  ->  ContinuityReport
     |                                   |
     v                                   |
+forks.find_forks (same records)  ->  ForkReport
+    |                                   |
+    +---------------+-------------------+
+                    v
+             report.Analysis
+                    |
+        +-----------+------------+
