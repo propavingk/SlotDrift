@@ -16,3 +16,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The parser validates `tx_count` and string field types in both engines, so a
   snapshot that Python accepts is never silently accepted by the Rust engine.
 - Parity check added for every fixture, which caught the `tx_count` gap.
+
+## [1.0.0] - 2025-09-16
+
+### Added
+
