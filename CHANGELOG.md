@@ -21,3 +21,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Stable CLI contract: `analyze`, `forks` and `leaders` subcommands with exit
+  codes 0, 1 and 2.
+- `docs/FORMAT.md` as the written contract for input, output and rules.
+- Deterministic JSON report with fixed keys.
+
