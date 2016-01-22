@@ -26,3 +26,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/FORMAT.md` as the written contract for input, output and rules.
 - Deterministic JSON report with fixed keys.
 
+## [0.9.0] - 2024-06-11
+
+### Added
+
+- Rust engine (`engine/`) as an independent second implementation.
