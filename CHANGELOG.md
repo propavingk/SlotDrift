@@ -36,3 +36,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [0.7.0] - 2021-10-19
 
+### Added
+
+- `--limit` with an explicit `... N more` truncation line.
+- Boundary parents below the window are documented as expected, not anomalies.
+
