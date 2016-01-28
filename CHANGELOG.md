@@ -31,3 +31,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - Rust engine (`engine/`) as an independent second implementation.
+- `key: value` output from the engine for cross-implementation comparison.
+- `scripts/parity.py` comparing both engines on every fixture.
+
+## [0.7.0] - 2021-10-19
+
