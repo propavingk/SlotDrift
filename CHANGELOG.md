@@ -41,3 +41,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `--limit` with an explicit `... N more` truncation line.
 - Boundary parents below the window are documented as expected, not anomalies.
 
+## [0.6.0] - 2020-11-10
+
+### Added
+
+- JSON report: `analyze --format json` with stable key order.
