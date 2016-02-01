@@ -56,3 +56,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Orphans are compared by identity `(slot, blockhash)`, not by slot number.
 
 ## [0.4.0] - 2018-10-02
+
+### Added
+
+- Fork detection: duplicate slots by distinct blockhash.
+- Canonical chain selection: commitment rank, then highest slot, then smallest
