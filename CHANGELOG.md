@@ -51,3 +51,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [0.5.0] - 2019-09-24
 
 ### Added
+
+- Orphan segmentation by parent links inside the orphaned set.
+- Orphans are compared by identity `(slot, blockhash)`, not by slot number.
+
+## [0.4.0] - 2018-10-02
