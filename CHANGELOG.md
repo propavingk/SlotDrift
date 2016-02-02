@@ -61,3 +61,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Fork detection: duplicate slots by distinct blockhash.
 - Canonical chain selection: commitment rank, then highest slot, then smallest
+  blockhash.
+
+## [0.3.0] - 2017-11-21
+
+### Added
