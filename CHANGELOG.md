@@ -66,3 +66,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [0.3.0] - 2017-11-21
 
 ### Added
+
+- Explicit skipped slot handling, including the post-skip parent bridge.
+- Per-leader skip rates and the `leaders` subcommand.
+
+## [0.2.0] - 2016-09-06
