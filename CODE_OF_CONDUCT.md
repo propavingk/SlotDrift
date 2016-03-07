@@ -56,3 +56,10 @@ when an individual is officially representing the community in public spaces.
 Examples of representing our community include using an official email
 address, posting via an official social media account, or acting as an
 appointed representative at an online or offline event.
+
+## Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported to the community leaders responsible for enforcement at
+[MAINTAINER CONTACT]. All complaints will be reviewed and investigated
+promptly and fairly.
