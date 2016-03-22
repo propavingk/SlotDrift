@@ -8,3 +8,8 @@ contract, not an accident.
 This file explains the setup, the checks, and what a good change looks like
 here.
 
+## Setup
+
+There is nothing to install for the Python side. Python 3.11 or newer is the
+only requirement, and the package uses the standard library only:
+
