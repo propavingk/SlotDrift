@@ -13,3 +13,9 @@ here.
 There is nothing to install for the Python side. Python 3.11 or newer is the
 only requirement, and the package uses the standard library only:
 
+```bash
+git clone <repository>
+cd slotdrift
+export PYTHONPATH=src
+```
+
