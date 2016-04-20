@@ -19,3 +19,8 @@ cd slotdrift
 export PYTHONPATH=src
 ```
 
+The Rust engine lives in `engine/` and uses the standard library only as well.
+A stable Rust toolchain with `rustfmt` and `clippy` is enough:
+
+```bash
+rustup component add rustfmt clippy
