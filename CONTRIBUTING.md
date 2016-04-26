@@ -29,3 +29,9 @@ rustup component add rustfmt clippy
 ## The checks
 
 Run these before opening a pull request. They are the same checks CI runs.
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -v
+cargo test --manifest-path engine/Cargo.toml
+python scripts/parity.py
+python scripts/verify.py
