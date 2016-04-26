@@ -40,3 +40,8 @@ python scripts/verify.py
 `make test`, `make parity` and `make verify` wrap the same commands.
 
 The parity script is the important one when you touch arithmetic. Any change
+to the continuity or fork rules must be made in both implementations, and
+`scripts/parity.py` must report that every fixture agrees. A change that only
+edits one side will fail parity, and that failure is the point of the check.
+
+## What a good change looks like
