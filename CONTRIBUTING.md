@@ -35,3 +35,8 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 cargo test --manifest-path engine/Cargo.toml
 python scripts/parity.py
 python scripts/verify.py
+```
+
+`make test`, `make parity` and `make verify` wrap the same commands.
+
+The parity script is the important one when you touch arithmetic. Any change
