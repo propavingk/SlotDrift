@@ -24,3 +24,8 @@ A stable Rust toolchain with `rustfmt` and `clippy` is enough:
 
 ```bash
 rustup component add rustfmt clippy
+```
+
+## The checks
+
+Run these before opening a pull request. They are the same checks CI runs.
