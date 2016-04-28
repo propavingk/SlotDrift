@@ -45,3 +45,9 @@ to the continuity or fork rules must be made in both implementations, and
 edits one side will fail parity, and that failure is the point of the check.
 
 ## What a good change looks like
+
+- One topic per pull request. A bug fix does not also reorganize a module.
+- Tests for behavior changes. New validation rules need a fixture line that
+  fails, and new analysis rules need an in-memory record set that exercises
+  them.
+- Re-run the CLI after a change and paste the real output into the pull
