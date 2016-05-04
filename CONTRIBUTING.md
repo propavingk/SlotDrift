@@ -51,3 +51,8 @@ edits one side will fail parity, and that failure is the point of the check.
   fails, and new analysis rules need an in-memory record set that exercises
   them.
 - Re-run the CLI after a change and paste the real output into the pull
+  request description if the report shape changed.
+- Keep the report deterministic. If an output byte depends on wall-clock time,
+  hash ordering that is not sorted, or randomness, it is a bug.
+- Line-oriented output. New sections start with a label line and use two
+  spaces of indentation, matching the existing report.
