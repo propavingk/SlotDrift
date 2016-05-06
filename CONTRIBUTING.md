@@ -56,3 +56,8 @@ edits one side will fail parity, and that failure is the point of the check.
   hash ordering that is not sorted, or randomness, it is a bug.
 - Line-oriented output. New sections start with a label line and use two
   spaces of indentation, matching the existing report.
+
+## Standing rules
+
+1. Standard library only, in both languages. No new dependencies, including
+   development dependencies, without discussing it first.
