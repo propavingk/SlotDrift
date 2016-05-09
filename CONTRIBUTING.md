@@ -61,3 +61,9 @@ edits one side will fail parity, and that failure is the point of the check.
 
 1. Standard library only, in both languages. No new dependencies, including
    development dependencies, without discussing it first.
+2. No network access anywhere in the shipped code. The tools read files and
+   write to stdout.
+3. No em dash in any file, in any of its three forms. `scripts/verify.py`
+   checks this mechanically.
+4. Fixtures are honest. Synthetic fixtures are labelled as synthetic in
+   `samples/README.md`, and `samples/build_fixture.py` must rebuild them byte
