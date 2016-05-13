@@ -67,3 +67,8 @@ edits one side will fail parity, and that failure is the point of the check.
    checks this mechanically.
 4. Fixtures are honest. Synthetic fixtures are labelled as synthetic in
    `samples/README.md`, and `samples/build_fixture.py` must rebuild them byte
+   for byte.
+5. Numbers that appear in documentation, assets or commit messages must come
+   from a real run. If you did not run it, do not write it.
+6. Meaningful exit codes stay stable: 0 clean, 1 findings, 2 usage or input
+   error.
