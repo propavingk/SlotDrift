@@ -77,3 +77,9 @@ edits one side will fail parity, and that failure is the point of the check.
 
 ## Commit messages
 
+Use conventional prefixes, one topic each:
+
+```
+feat: add per-epoch skip summary
+fix: treat a skipped parent as a parent anomaly
+docs: specify the JSON report contract
