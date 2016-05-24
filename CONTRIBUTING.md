@@ -72,3 +72,8 @@ edits one side will fail parity, and that failure is the point of the check.
    from a real run. If you did not run it, do not write it.
 6. Meaningful exit codes stay stable: 0 clean, 1 findings, 2 usage or input
    error.
+7. The JSON output keys in `docs/FORMAT.md` are a contract. Adding keys is a
+   minor change; renaming or removing them needs a changelog entry.
+
+## Commit messages
+
