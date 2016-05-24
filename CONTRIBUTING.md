@@ -83,3 +83,8 @@ Use conventional prefixes, one topic each:
 feat: add per-epoch skip summary
 fix: treat a skipped parent as a parent anomaly
 docs: specify the JSON report contract
+test: cover boundary parents below the window
+```
+
+## Reviewing your own diff
+
