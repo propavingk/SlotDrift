@@ -6,3 +6,5 @@ export PYTHONPATH := src
 help:
 	@echo "slotdrift targets:"
 	@echo "  make test    run the Python unit tests and the Rust engine tests"
+	@echo "  make verify  run the repository quality gate (scripts/verify.py)"
+	@echo "  make run     analyze the cluster sample and print the report"
