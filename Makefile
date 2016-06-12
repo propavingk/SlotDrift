@@ -17,3 +17,5 @@ test:
 
 verify:
 	$(PYTHON) scripts/verify.py
+
+run:
