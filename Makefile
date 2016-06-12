@@ -11,3 +11,5 @@ help:
 	@echo "  make parity  compare the Python and Rust numbers on the samples"
 	@echo "  make clean   remove caches and build output"
 
+test:
+	$(PYTHON) -m unittest discover -s tests -v
