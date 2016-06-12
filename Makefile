@@ -21,3 +21,4 @@ verify:
 run:
 	$(PYTHON) -m slotdrift analyze samples/cluster-window.jsonl
 
+parity:
