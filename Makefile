@@ -19,3 +19,5 @@ verify:
 	$(PYTHON) scripts/verify.py
 
 run:
+	$(PYTHON) -m slotdrift analyze samples/cluster-window.jsonl
+
