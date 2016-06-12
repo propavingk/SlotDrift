@@ -13,3 +13,5 @@ help:
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v
+	cargo test --manifest-path engine/Cargo.toml
+
