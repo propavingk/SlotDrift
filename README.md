@@ -57,3 +57,19 @@ easy to miss:
 1. A gap in the slot numbering is not automatically a problem. Some gaps are
    explicit skips, some are records your export simply did not capture, and
    the two mean very different things.
+2. A missing record can silently change the shape of the chain. If the block
+   at slot 100 is absent from the export, then the block at slot 101 pointing
+   at parent 99 looks like a two-slot detour, and a naive check reports an
+   anomaly that is really an export limitation.
+
+slotdrift reads the window the way the chain reads it: produced blocks are
+connected through their parent links, skipped slots are explicit facts, and
+anything that does not fit that picture is reported with the reason.
+
+---
+
+## What it does
+
+- Validates every line and reports bad ones with line numbers instead of
+  aborting on the first.
+- Computes the window, missing slots, duplicate slots, parent anomalies and
