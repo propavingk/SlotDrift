@@ -73,3 +73,18 @@ anything that does not fit that picture is reported with the reason.
 - Validates every line and reports bad ones with line numbers instead of
   aborting on the first.
 - Computes the window, missing slots, duplicate slots, parent anomalies and
+  skipped slots.
+- Detects duplicate slots by distinct blockhash, and splits the window into a
+  canonical chain and orphaned segments using deterministic rules.
+- Attributes skips per leader with a scheduled, skipped, produced and skip
+  rate summary.
+- Emits a line-oriented text report or a JSON report with fixed field names.
+- Cross-checks every rule with a second implementation in Rust. The two
+  engines are compared on every fixture by `scripts/parity.py`.
+
+<p align="center">
+  <img src="docs/assets/continuity.svg" alt="One cell per slot in the sample window: finalized slots in paper, skipped slots pale, slots whose rival block was orphaned in moss, and a rust bracket under the three duplicated slots at 320400040 to 320400042" width="592">
+</p>
+
+The picture above is built from the actual numbers in this repository's
+fixtures: 61 slots, 64 records, 2 explicit skips, 3 duplicated slots, 2
