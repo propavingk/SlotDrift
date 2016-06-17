@@ -149,3 +149,19 @@ LEADERS (top 5 by skip rate)
   7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2  skipped 0/4 (0.0%)
   9xQeWvG816bUx9EPfCDsRkHr2D3y6dM4nA8bV5cL7pQt  skipped 0/4 (0.0%)
 
+PARSE ERRORS (first 10)
+  none
+
+FINDINGS: 0
+```
+
+The exit code is 0. Note what is not reported: the two skipped slots do not
+count as findings, because a skipped slot is normal cluster behavior. They are
+recorded and visible, not flagged.
+
+---
+
+## A real run: cluster window
+
+The cluster fixture is built to exercise every finding class. The command,
+then the full capture collapsed so this page stays scannable:
