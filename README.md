@@ -134,3 +134,18 @@ CONTINUITY
   skipped slots: 2
 
 GAPS (first 10)
+  none
+
+PARENT ANOMALIES (first 10)
+  none
+
+FORKS (first 10)
+  none
+
+LEADERS (top 5 by skip rate)
+  4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T  skipped 1/4 (25.0%)
+  CvSb7Md3jUWLtR9jRUnL2t9RzZ9k6NQmE7u8vCqQv7fE  skipped 1/4 (25.0%)
+  3VfJ8kMzY2nQpR6tWsLxE1uHcD4yA9bG7eN5mK2qSvT  skipped 0/4 (0.0%)
+  7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2  skipped 0/4 (0.0%)
+  9xQeWvG816bUx9EPfCDsRkHr2D3y6dM4nA8bV5cL7pQt  skipped 0/4 (0.0%)
+
