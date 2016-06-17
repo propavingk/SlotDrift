@@ -88,3 +88,18 @@ anything that does not fit that picture is reported with the reason.
 
 The picture above is built from the actual numbers in this repository's
 fixtures: 61 slots, 64 records, 2 explicit skips, 3 duplicated slots, 2
+orphan segments, 1 parent anomaly, 12 findings.
+
+---
+
+## Quick start
+
+There is nothing to install for the Python core. Clone the repository and run
+the module directly:
+
+```bash
+export PYTHONPATH=src
+python -m slotdrift analyze samples/cluster-window.jsonl
+```
+
+Or install the console script with `pip install .` and run
