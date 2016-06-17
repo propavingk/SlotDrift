@@ -119,3 +119,18 @@ The clean fixture has 30 records, two skipped slots, and no structural
 problems. This is the actual output, captured from the command shown:
 
 ```bash
+PYTHONPATH=src python -m slotdrift analyze samples/clean-window.jsonl
+```
+
+```text
+SLOTDRIFT REPORT
+input: samples\clean-window.jsonl
+records: 30 | window: 100000000..100000029 | parse errors: 0
+
+CONTINUITY
+  missing slots: 0
+  duplicate slots: 0
+  parent anomalies: 0
+  skipped slots: 2
+
+GAPS (first 10)
