@@ -103,3 +103,19 @@ python -m slotdrift analyze samples/cluster-window.jsonl
 ```
 
 Or install the console script with `pip install .` and run
+`slotdrift analyze samples/cluster-window.jsonl`.
+
+The Rust engine builds with a stable toolchain and no external crates:
+
+```bash
+cargo run --manifest-path engine/Cargo.toml -- analyze samples/cluster-window.jsonl
+```
+
+---
+
+## A real run: clean window
+
+The clean fixture has 30 records, two skipped slots, and no structural
+problems. This is the actual output, captured from the command shown:
+
+```bash
