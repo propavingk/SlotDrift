@@ -165,3 +165,18 @@ recorded and visible, not flagged.
 
 The cluster fixture is built to exercise every finding class. The command,
 then the full capture collapsed so this page stays scannable:
+
+```bash
+PYTHONPATH=src python -m slotdrift analyze samples/cluster-window.jsonl
+```
+
+<details>
+<summary>Full report for the cluster window (12 findings)</summary>
+
+```text
+SLOTDRIFT REPORT
+input: samples\cluster-window.jsonl
+records: 64 | window: 320400000..320400060 | parse errors: 0
+
+CONTINUITY
+  missing slots: 0
