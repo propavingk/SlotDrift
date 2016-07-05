@@ -180,3 +180,19 @@ records: 64 | window: 320400000..320400060 | parse errors: 0
 
 CONTINUITY
   missing slots: 0
+  duplicate slots: 3
+  parent anomalies: 1
+  skipped slots: 3
+
+GAPS (first 10)
+  none
+
+PARENT ANOMALIES (first 10)
+  slot 320400058 parent 320400055: step over slots not marked skipped
+
+FORKS (first 10)
+  duplicate slot 320400040: 2 blockhashes
+  duplicate slot 320400041: 2 blockhashes
+  duplicate slot 320400042: 2 blockhashes
+  orphan segment 320400040..320400042 (3 slots, attached at parent 320400039, processed 3)
+  orphan segment 320400056..320400057 (2 slots, attached at parent 320400055, finalized 2)
