@@ -196,3 +196,18 @@ FORKS (first 10)
   duplicate slot 320400042: 2 blockhashes
   orphan segment 320400040..320400042 (3 slots, attached at parent 320400039, processed 3)
   orphan segment 320400056..320400057 (2 slots, attached at parent 320400055, finalized 2)
+
+LEADERS (top 5 by skip rate)
+  Hm4kP9sV2xC7zQ1nB5yR8tL3wE6uA2jD9gF4vK7oM1qS  skipped 1/7 (14.3%)
+  7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2  skipped 1/9 (11.1%)
+  GdnSyH3YtwcxFvQrVVJMm1tr2ojebqjFEuiEcWm2mSx5  skipped 1/9 (11.1%)
+  3VfJ8kMzY2nQpR6tWsLxE1uHcD4yA9bG7eN5mK2qSvT  skipped 0/7 (0.0%)
+  4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T  skipped 0/9 (0.0%)
+
+PARSE ERRORS (first 10)
+  none
+
+FINDINGS: 12
+```
+
+</details>
