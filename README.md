@@ -226,3 +226,19 @@ anomaly, and the two orphan segments carrying 5 blocks between them.
 | `slotdrift analyze PATH [--format text\|json] [--limit N] [--output FILE]` | the full report | 0 clean, 1 findings, 2 usage |
 | `slotdrift leaders PATH` | one line per leader with skip rate | 0, or 1 when parse errors exist |
 | `slotdrift forks PATH` | duplicate slots and orphan segments only | 0, or 1 when findings exist |
+
+`--limit N` sets how many entries each list section prints before the explicit
+`... N more` line. The default is 10, and a list is never silently truncated.
+
+---
+
+## The input format
+
+One JSON object per line. The fields, their types and their rules:
+
+| Field | Type | Required | Rules |
+|---|---|---|---|
+| `slot` | integer | yes | 0 or greater |
+| `parent` | integer or null | for produced slots | 0 or greater; required unless the record is skipped |
+| `commitment` | string | yes | `processed`, `confirmed`, `finalized` or `skipped` |
+| `leader` | string or null | no | non-empty when present |
