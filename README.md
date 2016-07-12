@@ -211,3 +211,18 @@ FINDINGS: 12
 ```
 
 </details>
+
+The exit code is 1. Read the report from the bottom up: 12 findings, made of
+3 duplicate slots (2 extra records beyond the first per slot), 1 parent
+anomaly, and the two orphan segments carrying 5 blocks between them.
+
+---
+
+## Commands
+
+| Command | What it prints | Exit codes |
+|---|---|---|
+| `slotdrift version` (also `--version`) | `slotdrift <version>` | 0 |
+| `slotdrift analyze PATH [--format text\|json] [--limit N] [--output FILE]` | the full report | 0 clean, 1 findings, 2 usage |
+| `slotdrift leaders PATH` | one line per leader with skip rate | 0, or 1 when parse errors exist |
+| `slotdrift forks PATH` | duplicate slots and orphan segments only | 0, or 1 when findings exist |
