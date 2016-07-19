@@ -257,3 +257,18 @@ each one is constructed. `samples/build_fixture.py` rebuilds them byte for
 byte.
 
 ---
+
+## A worked walkthrough
+
+Follow one record from the cluster fixture, the block that bridges the first
+pair of skips. In `samples/cluster-window.jsonl` the record for slot
+320400017 carries `parent: 320400014`, `commitment: finalized` and a leader.
+
+**Step 1, validation.** Slot is an integer, parent is an integer,
+commitment is a known value, leader is a non-empty string, and the record is
+produced so a parent is required and present. The record is accepted.
+
+**Step 2, continuity.** The window is 320400000 to 320400060. Slot 320400017
+is present, so it is not missing. Its parent, 320400014, is also present. The
+parent is below the previous slot by more than one, so the analyzer looks at
+the slots in between, 320400015 and 320400016. Both are present as explicit
