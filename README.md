@@ -242,3 +242,18 @@ One JSON object per line. The fields, their types and their rules:
 | `parent` | integer or null | for produced slots | 0 or greater; required unless the record is skipped |
 | `commitment` | string | yes | `processed`, `confirmed`, `finalized` or `skipped` |
 | `leader` | string or null | no | non-empty when present |
+| `blockhash` | string or null | no | non-empty when present; forbidden on a skipped record |
+| `tx_count` | integer or null | no | 0 or greater |
+
+Unknown keys are ignored, so exports with extra fields stay readable. Bad
+lines are collected with their line numbers and reported under `PARSE ERRORS`;
+parsing continues and the good records still produce a full report. The
+complete contract, including the JSON report fields, is in
+[docs/FORMAT.md](docs/FORMAT.md).
+
+The fixtures in `samples/` are synthetic test vectors, and
+[samples/README.md](samples/README.md) says so explicitly and documents how
+each one is constructed. `samples/build_fixture.py` rebuilds them byte for
+byte.
+
+---
