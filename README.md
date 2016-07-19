@@ -272,3 +272,19 @@ produced so a parent is required and present. The record is accepted.
 is present, so it is not missing. Its parent, 320400014, is also present. The
 parent is below the previous slot by more than one, so the analyzer looks at
 the slots in between, 320400015 and 320400016. Both are present as explicit
+skipped records, so this is the normal post-skip bridge and no anomaly is
+recorded. If only one of them had been skipped, the other would be an
+unexplained gap and the block would be flagged.
+
+**Step 3, forks and leaders.** The record is produced and its identity is on
+the canonical walk, so it is not orphaned and it has no duplicate. Its leader
+gets one more `scheduled` and one more `produced` in the per-leader summary;
+a skipped record at that leader would add to `skipped` instead.
+
+**Step 4, report.** The record itself never appears in the report, because
+nothing about it is a finding. Records appear only through the counts they
+contribute. That is the design: the report is a list of problems and
+summaries, not a dump of the input.
+
+---
+
