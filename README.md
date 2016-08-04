@@ -303,3 +303,18 @@ summaries, not a dump of the input.
 
 ---
 
+## Exit codes and CI integration
+
+| Code | Meaning |
+|---|---|
+| 0 | no findings |
+| 1 | findings present |
+| 2 | usage error: missing or unreadable input |
+
+A CI job that captures a window and wants to fail on structural problems can
+call the tool directly, because the exit code already encodes the answer:
+
+```bash
+PYTHONPATH=src python -m slotdrift analyze window.jsonl --format json > report.json
+```
+
