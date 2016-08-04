@@ -288,3 +288,18 @@ summaries, not a dump of the input.
 
 ---
 
+## Findings and what to do about them
+
+| Finding | What it means | What to do |
+|---|---|---|
+| missing slots | slot numbers inside the window with no record at all | check the exporter first; a capture gap is more common than a real hole |
+| duplicate slots | two or more records claim one slot, usually with different blockhashes | expected during a fork; check which branch finalized before treating it as a problem |
+| parent absent from export | a block points at a parent that is inside the window but not in the file | the export is incomplete and the chain shape near that block cannot be trusted |
+| parent not earlier than block | the parent slot is equal to or above the block itself | corruption in the export; the record cannot be part of a chain |
+| parent slot is marked skipped | a block claims a skipped slot as its ancestor | inconsistent data; a skipped slot produces no block to be a parent |
+| step over slots not marked skipped | a block skips over produced slots with no skip records | either a missing skip record or a real fork; look at the blockhash trail |
+| orphan segment | a run of blocks outside the canonical walk | these are the blocks the cluster abandoned, or the ones your export did not follow |
+| parse error | a line failed validation | fix the exporter; the message includes the line number and the rule |
+
+---
+
