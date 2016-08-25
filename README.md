@@ -349,3 +349,18 @@ a diff of two reports reads like a diff of two chain states.
 standard library only. It exists to cross-check the rules, not to be faster or
 smaller. The two programs share the format contract, not code.
 
+| | Python core | Rust engine |
+|---|---|---|
+| Location | `src/slotdrift/` | `engine/src/` |
+| Entry point | `python -m slotdrift` | `slotdrift-engine` |
+| Output | text report, JSON report | `key: value` lines for parity |
+| Tests | 39 unit tests | 5 integration tests |
+| Dependencies | none | none |
+
+```bash
+cargo run --manifest-path engine/Cargo.toml -- analyze samples/cluster-window.jsonl
+```
+
+It prints one `key: value` line per number, ending with `findings: 12` on the
+cluster fixture, which is the same total the Python report shows.
+
