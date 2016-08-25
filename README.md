@@ -364,3 +364,19 @@ cargo run --manifest-path engine/Cargo.toml -- analyze samples/cluster-window.js
 It prints one `key: value` line per number, ending with `findings: 12` on the
 cluster fixture, which is the same total the Python report shows.
 
+The parity script runs both engines on every fixture and compares the numbers:
+
+```bash
+python scripts/parity.py
+```
+
+```text
+clean-window.jsonl: OK
+cluster-window.jsonl: OK
+broken-lines.jsonl: OK
+parity: 3/3 fixtures agree
+```
+
+The parity check earned its keep during development. The first version of the
+Rust parser did not validate `tx_count`, so it accepted a line the Python
+parser rejected, and the fixture comparison refused the disagreement
