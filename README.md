@@ -318,3 +318,19 @@ call the tool directly, because the exit code already encodes the answer:
 PYTHONPATH=src python -m slotdrift analyze window.jsonl --format json > report.json
 ```
 
+The JSON output is stable, so `report.json` can be committed as a build
+artifact, attached to a ticket, or diffed between runs. Adding keys is a minor
+change; renaming or removing one needs a changelog entry, because consumers
+depend on them.
+
+---
+
+## Determinism and diffing two runs
+
+Two runs over the same input produce byte-identical output. Nothing depends on
+wall-clock time, locale, or hash ordering that is not sorted. That makes the
+report diffable in git:
+
+```bash
+PYTHONPATH=src python -m slotdrift analyze window.jsonl --output before.txt
+PYTHONPATH=src python -m slotdrift analyze window.jsonl --output after.txt
