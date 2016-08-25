@@ -334,3 +334,18 @@ report diffable in git:
 ```bash
 PYTHONPATH=src python -m slotdrift analyze window.jsonl --output before.txt
 PYTHONPATH=src python -m slotdrift analyze window.jsonl --output after.txt
+git diff --no-index before.txt after.txt
+```
+
+The interesting diffs are usually a changed `FINDINGS:` line and new entries
+in `ORPHAN SEGMENTS`. Because every list is sorted and every count is derived,
+a diff of two reports reads like a diff of two chain states.
+
+---
+
+## The second engine
+
+`engine/` is an independent implementation of the same arithmetic in Rust,
+standard library only. It exists to cross-check the rules, not to be faster or
+smaller. The two programs share the format contract, not code.
+
