@@ -410,3 +410,19 @@ the real problems.
 
 **A second implementation instead of shared code.** The alternative was to
 generate one implementation from the other or extract a shared library. Both
+would preserve bugs as easily as they preserve behavior. Two independent
+readings of the same written contract catch interpretation errors, which are
+the errors that actually happen.
+
+**JSON keys are a contract.** The alternative was to call the JSON output
+experimental and change it freely. CI consumers need stable keys, and a
+contract that is written down is the only kind that can be kept.
+
+---
+
+## Repository layout
+
+```
+slotdrift/
+  README.md                      this document
+  LICENSE                        MIT
