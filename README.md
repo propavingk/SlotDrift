@@ -380,3 +380,18 @@ parity: 3/3 fixtures agree
 The parity check earned its keep during development. The first version of the
 Rust parser did not validate `tx_count`, so it accepted a line the Python
 parser rejected, and the fixture comparison refused the disagreement
+immediately. That is the entire reason the second engine exists.
+
+---
+
+## Design decisions
+
+**Canonical chain by commitment rank, then slot, then blockhash.** The
+alternative was to follow the export order and treat the last record per slot
+as the winner. Export order is a property of the exporter, not the chain, and
+it makes the report unstable across exports of the same window. The
+documented ordering is arbitrary in its tie-breaks but deterministic, and
+determinism is what a report needs.
+
+**Orphans compared by identity, not by slot number.** The first version
+compared slots, which silently absorbed the losing block of a duplicate slot
