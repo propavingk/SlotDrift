@@ -395,3 +395,18 @@ determinism is what a report needs.
 
 **Orphans compared by identity, not by slot number.** The first version
 compared slots, which silently absorbed the losing block of a duplicate slot
+into the canonical set. Two blocks at slot 40 with different hashes are two
+different blocks, and the loser is an orphan. The fixture caught it, and
+`tests/test_forks.py` locks the behavior in.
+
+**A parent below the window is not an anomaly.** Every captured window starts
+mid chain. Flagging the first block of every export would train users to
+ignore the anomaly list, which is worse than having no list.
+
+**Skipped slots are recorded, not flagged.** Skips are how the cluster
+handles an absent leader. They belong in the report as facts and in the
+per-leader summary as rates, but treating each one as a finding would drown
+the real problems.
+
+**A second implementation instead of shared code.** The alternative was to
+generate one implementation from the other or extract a shared library. Both
