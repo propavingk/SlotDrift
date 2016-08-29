@@ -441,3 +441,18 @@ slotdrift/
     FORMAT.md                    the input and output contract
     assets/logo.svg              wordmark
     assets/continuity.svg        the cluster window as a graphic
+  engine/
+    Cargo.toml                   Rust crate, no dependencies
+    src/lib.rs                   parser and both analyses
+    src/main.rs                  key: value output for parity
+    tests/engine.rs              integration tests over the fixtures
+  samples/
+    README.md                    how each fixture was built
+    build_fixture.py             deterministic fixture builder
+    clean-window.jsonl           no findings, exit 0
+    cluster-window.jsonl         every finding class, exit 1
+    broken-lines.jsonl           validation errors, exit 1
+  scripts/
+    parity.py                    compares both engines on every fixture
+    verify.py                    the eight mechanical quality checks
+  src/slotdrift/
