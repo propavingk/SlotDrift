@@ -426,3 +426,18 @@ contract that is written down is the only kind that can be kept.
 slotdrift/
   README.md                      this document
   LICENSE                        MIT
+  CHANGELOG.md                   release history
+  CONTRIBUTING.md                setup, checks, standing rules
+  SECURITY.md                    threat model and reporting
+  CODE_OF_CONDUCT.md             Contributor Covenant 2.1
+  ARCHITECTURE.md                module by module, data flow, boundaries
+  CITATION.cff                   citation metadata
+  Makefile                       help, test, verify, run, parity, clean
+  .editorconfig                  editor defaults
+  .gitattributes                 LF enforcement, text classification
+  .gitignore                     caches and build output
+  pyproject.toml                 package metadata and console script
+  docs/
+    FORMAT.md                    the input and output contract
+    assets/logo.svg              wordmark
+    assets/continuity.svg        the cluster window as a graphic
