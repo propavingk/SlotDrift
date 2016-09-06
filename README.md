@@ -456,3 +456,19 @@ slotdrift/
     parity.py                    compares both engines on every fixture
     verify.py                    the eight mechanical quality checks
   src/slotdrift/
+    __init__.py                  version
+    __main__.py                  module entry point
+    cli.py                       argparse, subcommands, exit codes
+    continuity.py                window, gaps, parents, leaders
+    forks.py                     duplicates, canonical chain, orphans
+    model.py                     record model and validation
+    report.py                    deterministic text and JSON renderers
+  tests/
+    test_cli.py                  end to end exit codes and formats
+    test_continuity.py           window and parent rules
+    test_forks.py                duplicates, orphans, identity
+    test_model.py                validation and error collection
+  .github/
+    PULL_REQUEST_TEMPLATE.md     checklists tied to the real checks
+    ISSUE_TEMPLATE/              bug and feature forms
+    workflows/ci.yml             python, rust and parity jobs
