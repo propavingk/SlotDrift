@@ -472,3 +472,18 @@ slotdrift/
     PULL_REQUEST_TEMPLATE.md     checklists tied to the real checks
     ISSUE_TEMPLATE/              bug and feature forms
     workflows/ci.yml             python, rust and parity jobs
+```
+
+---
+
+## Tests and verification
+
+The suite is run before every push, and the numbers below are the actual
+results from this repository:
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+```text
+Ran 39 tests in 0.009s
