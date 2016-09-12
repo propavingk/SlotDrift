@@ -487,3 +487,19 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 
 ```text
 Ran 39 tests in 0.009s
+
+OK
+```
+
+`cargo test --manifest-path engine/Cargo.toml` reports 5 passed, 0 failed.
+
+What the tests actually cover:
+
+| Area | Examples |
+|---|---|
+| validation | every rejection rule has a failing line, and unknown keys are ignored |
+| continuity | missing slots, duplicates, boundary parents, skipped parents, step overs, leader rates, empty exports |
+| forks | designed counts on the cluster fixture, identity based orphan detection, skips are not forks |
+| CLI | exit codes 0, 1 and 2, JSON shape, list truncation, subcommand output |
+
+The eight mechanical checks, including em dash and SVG label overlap:
