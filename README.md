@@ -503,3 +503,18 @@ What the tests actually cover:
 | CLI | exit codes 0, 1 and 2, JSON shape, list truncation, subcommand output |
 
 The eight mechanical checks, including em dash and SVG label overlap:
+
+```bash
+python scripts/verify.py
+```
+
+```text
+[pass] svg parse: 2 files well formed
+[pass] svg filters: none present
+[pass] svg comments: no illegal double hyphen
+[pass] em dash: none in any text file
+[pass] readme attributes: no pandoc style blocks
+[pass] readme terms: no banned marketing terms
+[pass] svg metadata: viewBox, role, title, desc present
+[pass] svg labels: no overlapping labels on shared baselines
+verify: 8 checks, 0 failures
