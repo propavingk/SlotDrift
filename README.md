@@ -518,3 +518,18 @@ python scripts/verify.py
 [pass] svg metadata: viewBox, role, title, desc present
 [pass] svg labels: no overlapping labels on shared baselines
 verify: 8 checks, 0 failures
+```
+
+---
+
+## Limitations
+
+- **No streaming.** The whole export is held in memory, and the window loop
+  walks every slot between the minimum and the maximum. A sparse window of ten
+  million slots costs proportionally.
+- **Canonical selection is a heuristic.** It is deterministic and documented,
+  but it is not the cluster's fork choice. It decides which branch a report
+  treats as primary; it does not decide which branch the network chose.
+- **No leader schedule.** Skip attribution uses the leader field in the
+  export. The tool does not compute who was supposed to lead a slot.
+- **Blockhashes are strings, and consistency is not provenance.** Any
