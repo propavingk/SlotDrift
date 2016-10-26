@@ -35,3 +35,7 @@ The realistic threat model for a tool like this is malformed input:
    the same risk class as any CLI that writes a file.
 
 ## What slotdrift does not protect against
+
+- It does not verify that the export is truthful. It checks internal
+  consistency, not provenance.
+- It does not validate blockhashes as real cluster hashes; any non-empty
