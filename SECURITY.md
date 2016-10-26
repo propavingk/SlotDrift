@@ -32,3 +32,6 @@ The realistic threat model for a tool like this is malformed input:
    not sanitize output beyond what the JSON parser already strips.
 4. **Path handling in `--output`.** The path is used exactly as given. Running
    the tool as a privileged user against an attacker-controlled output path is
+   the same risk class as any CLI that writes a file.
+
+## What slotdrift does not protect against
