@@ -18,3 +18,6 @@ validates the fields, and prints a report. It does not:
   path you name;
 - run with elevated privileges, install anything, or modify its environment.
 
+The realistic threat model for a tool like this is malformed input:
+
+1. **Parser crashes.** A crafted line might trigger an unhandled exception.
