@@ -28,3 +28,7 @@ The realistic threat model for a tool like this is malformed input:
    multi-gigabyte export is not a supported input today.
 3. **Terminal output.** Slot numbers, leader names and blockhashes are
    printed as they appear in the input. If your export contains control
+   characters in string fields, your terminal will render them. The tool does
+   not sanitize output beyond what the JSON parser already strips.
+4. **Path handling in `--output`.** The path is used exactly as given. Running
+   the tool as a privileged user against an attacker-controlled output path is
