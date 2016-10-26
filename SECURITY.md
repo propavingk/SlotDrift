@@ -25,3 +25,6 @@ The realistic threat model for a tool like this is malformed input:
    any crash is treated as a bug.
 2. **Resource consumption.** A very large export consumes memory for the
    record list and the per-slot maps. There is no streaming mode yet; a
+   multi-gigabyte export is not a supported input today.
+3. **Terminal output.** Slot numbers, leader names and blockhashes are
+   printed as they appear in the input. If your export contains control
