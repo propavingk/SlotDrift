@@ -39,3 +39,6 @@ The realistic threat model for a tool like this is malformed input:
 - It does not verify that the export is truthful. It checks internal
   consistency, not provenance.
 - It does not validate blockhashes as real cluster hashes; any non-empty
+  string is accepted.
+- It is not a monitoring system. A clean report on a stale export says nothing
+  about the current chain state.
