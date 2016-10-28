@@ -42,3 +42,7 @@ The realistic threat model for a tool like this is malformed input:
   string is accepted.
 - It is not a monitoring system. A clean report on a stale export says nothing
   about the current chain state.
+
+## Reporting a vulnerability
+
+Report suspected vulnerabilities privately through the repository security
