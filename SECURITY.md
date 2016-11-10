@@ -46,3 +46,6 @@ The realistic threat model for a tool like this is malformed input:
 ## Reporting a vulnerability
 
 Report suspected vulnerabilities privately through the repository security
+advisory feature, or contact the maintainers at [MAINTAINER CONTACT]. Please
+include:
+
