@@ -49,3 +49,7 @@ Report suspected vulnerabilities privately through the repository security
 advisory feature, or contact the maintainers at [MAINTAINER CONTACT]. Please
 include:
 
+- the smallest input that reproduces the issue;
+- the exact command line;
+- the observed output or crash, pasted verbatim.
+
