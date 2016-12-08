@@ -9,3 +9,4 @@ description = "Slot continuity and fork analysis for captured Solana slot record
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
+authors = [{ name = "the slotdrift authors" }]
