@@ -5,3 +5,5 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "slotdrift"
 version = "1.0.1"
+description = "Slot continuity and fork analysis for captured Solana slot records."
+readme = "README.md"
