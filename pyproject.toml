@@ -10,3 +10,5 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "the slotdrift authors" }]
+keywords = ["solana", "slots", "forks", "continuity", "cli"]
+classifiers = [
