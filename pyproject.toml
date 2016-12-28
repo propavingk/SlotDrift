@@ -19,3 +19,5 @@ classifiers = [
 
 [project.scripts]
 slotdrift = "slotdrift.cli:main"
+
+[tool.setuptools.packages.find]
