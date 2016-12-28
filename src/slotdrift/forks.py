@@ -17,3 +17,11 @@ from dataclasses import dataclass, field
 
 from .model import SlotRecord
 
+
+@dataclass
+class OrphanSegment:
+    start_slot: int
+    end_slot: int
+    length: int
+    root_parent: int | None
+    commitments: dict[str, int] = field(default_factory=dict)
