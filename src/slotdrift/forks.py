@@ -9,3 +9,11 @@ Canonical chain rule (deterministic, documented in docs/FORMAT.md):
    highest slot, then to the lexicographically smallest blockhash.
 2. From the tip, walk parent links through the best record per slot.
 3. Every produced record outside that ancestry is orphaned and is grouped into
+   segments by following parent links inside the orphaned set.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+from .model import SlotRecord
+
