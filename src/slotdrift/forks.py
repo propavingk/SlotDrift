@@ -25,3 +25,11 @@ class OrphanSegment:
     length: int
     root_parent: int | None
     commitments: dict[str, int] = field(default_factory=dict)
+
+
+@dataclass
+class ForkReport:
+    duplicate_slots: dict[int, list[str]] = field(default_factory=dict)
+    orphan_segments: list[OrphanSegment] = field(default_factory=list)
+    orphan_count: int = 0
+    canonical_tip: int | None = None
