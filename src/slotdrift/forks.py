@@ -33,3 +33,10 @@ class ForkReport:
     orphan_segments: list[OrphanSegment] = field(default_factory=list)
     orphan_count: int = 0
     canonical_tip: int | None = None
+    canonical_length: int = 0
+
+    @property
+    def findings(self) -> int:
+        return len(self.duplicate_slots) + self.orphan_count
+
+
