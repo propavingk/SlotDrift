@@ -40,3 +40,11 @@ class ForkReport:
         return len(self.duplicate_slots) + self.orphan_count
 
 
+def _best(records: list[SlotRecord]) -> SlotRecord:
+    """Strongest commitment, then highest slot, then smallest blockhash."""
+    return max(
+        records,
+        key=lambda r: (r.rank, r.slot, tuple(-ord(c) for c in (r.blockhash or ""))),
+    )
+
+
