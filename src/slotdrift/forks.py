@@ -48,3 +48,11 @@ def _best(records: list[SlotRecord]) -> SlotRecord:
     )
 
 
+def find_forks(records: list[SlotRecord]) -> ForkReport:
+    report = ForkReport()
+    produced = [r for r in records if not r.skipped]
+    if not produced:
+        return report
+
+    by_slot: dict[int, list[SlotRecord]] = {}
+    for record in records:
