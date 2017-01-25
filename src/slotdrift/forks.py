@@ -64,3 +64,11 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
             report.duplicate_slots[slot] = hashes
 
     best = {slot: _best([r for r in group if not r.skipped] or group) for slot, group in by_slot.items()}
+
+    tip = _best(produced)
+    report.canonical_tip = tip.slot
+
+    def identity(r: SlotRecord) -> tuple[int, str]:
+        return (r.slot, r.blockhash or "")
+
+    canon: set[tuple[int, str]] = set()
