@@ -80,3 +80,11 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
         canon.add(key)
         if current.parent is None:
             break
+        current = best.get(current.parent)
+    report.canonical_length = len({slot for slot, _ in canon})
+
+    orphans: dict[int, SlotRecord] = {}
+    for record in produced:
+        if identity(record) not in canon:
+            orphans.setdefault(record.slot, record)
+    report.orphan_count = len(orphans)
