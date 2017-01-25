@@ -56,3 +56,11 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
 
     by_slot: dict[int, list[SlotRecord]] = {}
     for record in records:
+        by_slot.setdefault(record.slot, []).append(record)
+
+    for slot, group in sorted(by_slot.items()):
+        hashes = sorted({r.blockhash for r in group if r.blockhash})
+        if len(hashes) > 1:
+            report.duplicate_slots[slot] = hashes
+
+    best = {slot: _best([r for r in group if not r.skipped] or group) for slot, group in by_slot.items()}
