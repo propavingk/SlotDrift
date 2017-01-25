@@ -72,3 +72,11 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
         return (r.slot, r.blockhash or "")
 
     canon: set[tuple[int, str]] = set()
+    current: SlotRecord | None = tip
+    while current is not None:
+        key = identity(current)
+        if key in canon:
+            break
+        canon.add(key)
+        if current.parent is None:
+            break
