@@ -88,3 +88,10 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
         if identity(record) not in canon:
             orphans.setdefault(record.slot, record)
     report.orphan_count = len(orphans)
+
+    remaining = dict(orphans)
+    while remaining:
+        seed = remaining.pop(max(remaining))
+        segment = [seed]
+        parent = seed.parent
+        while parent in remaining:
