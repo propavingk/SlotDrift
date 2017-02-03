@@ -26,3 +26,11 @@ class LeaderStats:
     scheduled: int = 0
     skipped: int = 0
     produced: int = 0
+
+    @property
+    def skip_rate(self) -> float:
+        if self.scheduled == 0:
+            return 0.0
+        return self.skipped / self.scheduled
+
+
