@@ -10,3 +10,11 @@ skipped record. Anything else is reported:
   export, points at itself or a later slot, or skips over slots that are not
   marked skipped.
 - unexplained step: parent is below slot-1 and the intermediate slots are not
+  all present as skipped records.
+"""
+from __future__ import annotations
+
+from collections import defaultdict
+from dataclasses import dataclass, field
+
+from .model import SlotRecord
