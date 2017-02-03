@@ -18,3 +18,11 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 
 from .model import SlotRecord
+
+
+@dataclass
+class LeaderStats:
+    leader: str
+    scheduled: int = 0
+    skipped: int = 0
+    produced: int = 0
