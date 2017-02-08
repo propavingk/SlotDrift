@@ -34,3 +34,12 @@ class LeaderStats:
         return self.skipped / self.scheduled
 
 
+@dataclass
+class ContinuityReport:
+    record_count: int = 0
+    min_slot: int | None = None
+    max_slot: int | None = None
+    window: int = 0
+    missing: list[int] = field(default_factory=list)
+    duplicates: dict[int, int] = field(default_factory=dict)
+    skipped: list[int] = field(default_factory=list)
