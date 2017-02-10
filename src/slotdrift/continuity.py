@@ -43,3 +43,11 @@ class ContinuityReport:
     missing: list[int] = field(default_factory=list)
     duplicates: dict[int, int] = field(default_factory=dict)
     skipped: list[int] = field(default_factory=list)
+    parent_anomalies: list[tuple[int, int | None, str]] = field(default_factory=list)
+    leaders: dict[str, LeaderStats] = field(default_factory=dict)
+
+    @property
+    def findings(self) -> int:
+        return (
+            len(self.missing)
+            + sum(self.duplicates.values()) - len(self.duplicates)
