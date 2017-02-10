@@ -51,3 +51,11 @@ class ContinuityReport:
         return (
             len(self.missing)
             + sum(self.duplicates.values()) - len(self.duplicates)
+            + len(self.parent_anomalies)
+        )
+
+
+def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
+    report = ContinuityReport(record_count=len(records))
+    if not records:
+        return report
