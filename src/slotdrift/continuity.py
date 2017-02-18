@@ -67,3 +67,12 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
     slots = sorted(by_slot)
     report.min_slot = slots[0]
     report.max_slot = slots[-1]
+    report.window = report.max_slot - report.min_slot + 1
+
+    present = set(slots)
+    report.missing = [s for s in range(report.min_slot, report.max_slot + 1) if s not in present]
+
+    for slot, group in by_slot.items():
+        if len(group) > 1:
+            report.duplicates[slot] = len(group)
+
