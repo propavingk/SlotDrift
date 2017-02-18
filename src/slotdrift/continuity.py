@@ -59,3 +59,11 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
     report = ContinuityReport(record_count=len(records))
     if not records:
         return report
+
+    by_slot: dict[int, list[SlotRecord]] = defaultdict(list)
+    for record in records:
+        by_slot[record.slot].append(record)
+
+    slots = sorted(by_slot)
+    report.min_slot = slots[0]
+    report.max_slot = slots[-1]
