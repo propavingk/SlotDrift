@@ -76,3 +76,11 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
         if len(group) > 1:
             report.duplicates[slot] = len(group)
 
+    skipped_slots = {r.slot for r in records if r.skipped}
+    report.skipped = sorted(skipped_slots)
+
+    for slot, group in by_slot.items():
+        for record in group:
+            if record.skipped:
+                continue
+            parent = record.parent
