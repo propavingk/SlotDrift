@@ -84,3 +84,11 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
             if record.skipped:
                 continue
             parent = record.parent
+            if parent is None:
+                continue
+            if parent not in present:
+                if report.min_slot is not None and parent < report.min_slot:
+                    # The parent is simply outside the exported window. A
+                    # window always starts mid-chain, so this is expected.
+                    continue
+                report.parent_anomalies.append((slot, parent, "parent absent from export"))
