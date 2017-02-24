@@ -92,3 +92,12 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
                     # window always starts mid-chain, so this is expected.
                     continue
                 report.parent_anomalies.append((slot, parent, "parent absent from export"))
+                continue
+            if parent in skipped_slots:
+                report.parent_anomalies.append((slot, parent, "parent slot is marked skipped"))
+                continue
+            if parent >= slot:
+                report.parent_anomalies.append((slot, parent, "parent not earlier than block"))
+                continue
+            if parent < slot - 1:
+                bridge = range(parent + 1, slot)
