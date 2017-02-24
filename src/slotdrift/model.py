@@ -10,3 +10,11 @@ continuity problem worth seeing.
 """
 from __future__ import annotations
 
+import json
+from dataclasses import dataclass
+from pathlib import Path
+
+COMMITMENTS = ("processed", "confirmed", "finalized", "skipped")
+
+# Higher rank means a stronger commitment. Skipped slots carry rank -1 because
+# they produce no block and cannot anchor a chain.
