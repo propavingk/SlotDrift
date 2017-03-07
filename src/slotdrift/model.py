@@ -34,3 +34,12 @@ class SlotRecord:
     blockhash: str | None
     tx_count: int | None
     line: int
+
+    @property
+    def skipped(self) -> bool:
+        return self.commitment == "skipped"
+
+    @property
+    def rank(self) -> int:
+        return RANK[self.commitment]
+
