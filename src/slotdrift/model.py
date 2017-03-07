@@ -26,3 +26,11 @@ class FormatError(ValueError):
 
 
 @dataclass(frozen=True)
+class SlotRecord:
+    slot: int
+    parent: int | None
+    commitment: str
+    leader: str | None
+    blockhash: str | None
+    tx_count: int | None
+    line: int
