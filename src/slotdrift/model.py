@@ -18,3 +18,11 @@ COMMITMENTS = ("processed", "confirmed", "finalized", "skipped")
 
 # Higher rank means a stronger commitment. Skipped slots carry rank -1 because
 # they produce no block and cannot anchor a chain.
+RANK = {"skipped": -1, "processed": 0, "confirmed": 1, "finalized": 2}
+
+
+class FormatError(ValueError):
+    """Raised when a single record fails validation."""
+
+
+@dataclass(frozen=True)
