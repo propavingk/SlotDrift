@@ -67,3 +67,12 @@ def _optional_str(obj: dict, key: str, line: int) -> str | None:
 def parse_record(obj: object, line: int) -> SlotRecord:
     """Validate one decoded JSON value into a SlotRecord."""
     if not isinstance(obj, dict):
+        raise FormatError(f"line {line}: record must be a JSON object")
+    slot = _require_int(obj, "slot", line, minimum=0)
+    parent = None
+    if "parent" in obj and obj["parent"] is not None:
+        parent = _require_int(obj, "parent", line, minimum=0)
+    if "commitment" not in obj:
+        raise FormatError(f"line {line}: missing required field 'commitment'")
+    commitment = obj["commitment"]
+    if commitment not in COMMITMENTS:
