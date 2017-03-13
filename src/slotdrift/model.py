@@ -59,3 +59,11 @@ def _optional_str(obj: dict, key: str, line: int) -> str | None:
     if key not in obj or obj[key] is None:
         return None
     value = obj[key]
+    if not isinstance(value, str) or not value:
+        raise FormatError(f"line {line}: field '{key}' must be a non-empty string")
+    return value
+
+
+def parse_record(obj: object, line: int) -> SlotRecord:
+    """Validate one decoded JSON value into a SlotRecord."""
+    if not isinstance(obj, dict):
