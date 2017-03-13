@@ -43,3 +43,11 @@ class SlotRecord:
     def rank(self) -> int:
         return RANK[self.commitment]
 
+
+def _require_int(obj: dict, key: str, line: int, minimum: int | None = None) -> int:
+    if key not in obj:
+        raise FormatError(f"line {line}: missing required field '{key}'")
+    value = obj[key]
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise FormatError(f"line {line}: field '{key}' must be an integer")
+    if minimum is not None and value < minimum:
