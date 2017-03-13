@@ -51,3 +51,11 @@ def _require_int(obj: dict, key: str, line: int, minimum: int | None = None) -> 
     if isinstance(value, bool) or not isinstance(value, int):
         raise FormatError(f"line {line}: field '{key}' must be an integer")
     if minimum is not None and value < minimum:
+        raise FormatError(f"line {line}: field '{key}' must be >= {minimum}")
+    return value
+
+
+def _optional_str(obj: dict, key: str, line: int) -> str | None:
+    if key not in obj or obj[key] is None:
+        return None
+    value = obj[key]
