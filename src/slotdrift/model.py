@@ -84,3 +84,11 @@ def parse_record(obj: object, line: int) -> SlotRecord:
         tx_count = _require_int(obj, "tx_count", line, minimum=0)
     record = SlotRecord(
         slot=slot,
+        parent=parent,
+        commitment=commitment,
+        leader=_optional_str(obj, "leader", line),
+        blockhash=_optional_str(obj, "blockhash", line),
+        tx_count=tx_count,
+        line=line,
+    )
+    if not record.skipped and record.parent is None:
