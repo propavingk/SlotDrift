@@ -76,3 +76,11 @@ def parse_record(obj: object, line: int) -> SlotRecord:
         raise FormatError(f"line {line}: missing required field 'commitment'")
     commitment = obj["commitment"]
     if commitment not in COMMITMENTS:
+        raise FormatError(
+            f"line {line}: commitment must be one of {', '.join(COMMITMENTS)}"
+        )
+    tx_count = None
+    if "tx_count" in obj and obj["tx_count"] is not None:
+        tx_count = _require_int(obj, "tx_count", line, minimum=0)
+    record = SlotRecord(
+        slot=slot,
