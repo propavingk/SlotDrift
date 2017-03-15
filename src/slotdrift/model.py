@@ -92,3 +92,12 @@ def parse_record(obj: object, line: int) -> SlotRecord:
         line=line,
     )
     if not record.skipped and record.parent is None:
+        raise FormatError(f"line {line}: a produced slot must carry a parent")
+    if record.skipped and record.blockhash is not None:
+        raise FormatError(f"line {line}: a skipped slot cannot carry a blockhash")
+    return record
+
+
+def parse_text(text: str) -> tuple[list[SlotRecord], list[tuple[int, str]]]:
+    """Parse JSONL text into (records, errors). Blank lines are ignored."""
+    records: list[SlotRecord] = []
