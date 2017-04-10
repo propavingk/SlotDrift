@@ -533,3 +533,69 @@ verify: 8 checks, 0 failures
 - **No leader schedule.** Skip attribution uses the leader field in the
   export. The tool does not compute who was supposed to lead a slot.
 - **Blockhashes are strings, and consistency is not provenance.** Any
+  non-empty string is accepted, and a clean report means the export is
+  internally coherent. It says nothing about whether the export is truthful or
+  current.
+- **One window per run.** Comparing two windows is done by diffing two report
+  files, not by a built-in comparison mode.
+
+---
+
+## Roadmap
+
+No dates, and nothing here is promised. In rough priority order:
+
+- a `--summary` mode that prints only the counts, for dashboards;
+- optional per-epoch grouping of skip rates;
+- a strict mode that also exits nonzero on skips above a threshold;
+- sample fixtures contributed from real captures, with provenance noted.
+
+---
+
+## Glossary
+
+| Term | Meaning |
+|---|---|
+| slot | a short, numbered window in which one leader may produce a block |
+| skipped slot | a slot that produced no block, because the leader was unavailable or the fork was abandoned |
+| blockhash | the identifier of a produced block; two blocks can share a slot, not a hash |
+| parent | the previous produced block on this branch, which may be several slots back when slots were skipped |
+| commitment | the strength of a block's acceptance: processed, confirmed, finalized |
+| duplicate slot | a slot with more than one produced block, usually during a fork |
+| orphan | a produced block outside the canonical walk |
+| orphan segment | a run of orphaned blocks connected by parent links, with one attachment point |
+| window | the range from the smallest to the largest slot present in the export |
+| finding | a condition the report counts toward the exit code |
+
+---
+
+## The mark
+
+The wordmark is the project name set in one weight, split at the compound
+boundary: `slot` in ink and `drift` in rust. The split is the single
+typographic decision, and it means something: the slot is the neutral clock,
+and the drift is the divergence from it that this tool measures. The tagline
+underneath is set in moss, one step down in hierarchy.
+
+The data graphic uses the same palette, and the accent appears exactly once,
+on the bracket under the duplicated slots, because that is the first thing a
+reader should look at in that picture. Every number in the graphic comes from
+running the CLI on `samples/cluster-window.jsonl`. Both assets are static:
+the motion decision is none, because nothing in this tool is a sequence that a
+static frame misrepresents.
+
+The palette was derived from the subject: warm paper and ink, with a single
+rust accent, chosen against the common dark dashboard look. Contrast on the
+paper background is 11.5:1 for ink, 6.1:1 for rust, and 5.1:1 for moss, which
+clears WCAG AA for the text sizes used. The banner carries one animation: the
+report summary line types itself once per loop, which encodes the report being
+written after the scan. Under reduced motion the line is simply fully visible,
+and the banner reads the same. The wordmark asset stays static.
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+<!-- draft note 87 -->
