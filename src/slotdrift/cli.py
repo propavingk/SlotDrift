@@ -32,3 +32,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     analyze = sub.add_parser("analyze", help="full continuity and fork report")
     analyze.add_argument("input", type=Path, help="slot export (JSONL)")
+    analyze.add_argument("--format", choices=("text", "json"), default="text")
+    analyze.add_argument("--limit", type=int, default=10, help="list entries shown per section")
+    analyze.add_argument("--output", type=Path, default=None, help="write the report to a file")
+
+    leaders = sub.add_parser("leaders", help="per-leader skip rates only")
+    leaders.add_argument("input", type=Path, help="slot export (JSONL)")
+
+    forks = sub.add_parser("forks", help="duplicate slots and orphan segments only")
+    forks.add_argument("input", type=Path, help="slot export (JSONL)")
+
+    return parser
