@@ -21,3 +21,14 @@ from .forks import find_forks
 from .model import parse_file
 from .report import Analysis, render_json, render_text
 
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="slotdrift",
+        description="Slot continuity and fork analysis for captured Solana slot records.",
+    )
+    parser.add_argument("--version", action="version", version=f"slotdrift {__version__}")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    analyze = sub.add_parser("analyze", help="full continuity and fork report")
+    analyze.add_argument("input", type=Path, help="slot export (JSONL)")
