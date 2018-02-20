@@ -43,3 +43,14 @@ def build_parser() -> argparse.ArgumentParser:
     forks.add_argument("input", type=Path, help="slot export (JSONL)")
 
     return parser
+
+
+def load(path: Path) -> tuple:
+    if not path.exists():
+        print(f"slotdrift: input not found: {path}", file=sys.stderr)
+        raise SystemExit(2)
+    if not path.is_file():
+        print(f"slotdrift: input is not a file: {path}", file=sys.stderr)
+        raise SystemExit(2)
+    try:
+        return parse_file(path)
