@@ -65,3 +65,14 @@ def main(argv: list[str] | None = None) -> int:
 
     records, errors = load(args.input)
     continuity = analyze_continuity(records)
+    fork_report = find_forks(records)
+
+    if args.command == "leaders":
+        ranked = sorted(
+            continuity.leaders.values(), key=lambda s: (-s.skip_rate, -s.skipped, s.leader)
+        )
+        for stats in ranked:
+            print(
+                f"{stats.leader}  skipped {stats.skipped}/{stats.scheduled} "
+                f"({stats.skip_rate * 100:.1f}%)"
+            )
