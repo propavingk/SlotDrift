@@ -88,3 +88,14 @@ def main(argv: list[str] | None = None) -> int:
             continuity=continuity,
             forks=fork_report,
         )
+        for slot, hashes in sorted(fork_report.duplicate_slots.items()):
+            print(f"duplicate slot {slot}: {len(hashes)} blockhashes")
+        for segment in fork_report.orphan_segments:
+            print(
+                f"orphan segment {segment.start_slot}..{segment.end_slot} "
+                f"({segment.length} slots, attached at parent {segment.root_parent})"
+            )
+        if not fork_report.duplicate_slots and not fork_report.orphan_segments:
+            print("no forks detected")
+        return 1 if analysis.findings else 0
+
