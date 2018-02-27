@@ -12,3 +12,16 @@ from .continuity import ContinuityReport
 from .forks import ForkReport
 
 LIST_LIMIT = 10
+
+
+@dataclass
+class Analysis:
+    source: str
+    record_count: int
+    parse_errors: list[tuple[int, str]]
+    continuity: ContinuityReport
+    forks: ForkReport
+    list_limit: int = LIST_LIMIT
+
+    @property
+    def findings(self) -> int:
