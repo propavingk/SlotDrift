@@ -54,3 +54,14 @@ def load(path: Path) -> tuple:
         raise SystemExit(2)
     try:
         return parse_file(path)
+    except OSError as exc:
+        print(f"slotdrift: cannot read {path}: {exc}", file=sys.stderr)
+        raise SystemExit(2)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    records, errors = load(args.input)
+    continuity = analyze_continuity(records)
