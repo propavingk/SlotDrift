@@ -76,3 +76,15 @@ def main(argv: list[str] | None = None) -> int:
                 f"{stats.leader}  skipped {stats.skipped}/{stats.scheduled} "
                 f"({stats.skip_rate * 100:.1f}%)"
             )
+        if not ranked:
+            print("no leaders present in export")
+        return 0 if not errors else 1
+
+    if args.command == "forks":
+        analysis = Analysis(
+            source=str(args.input),
+            record_count=len(records),
+            parse_errors=errors,
+            continuity=continuity,
+            forks=fork_report,
+        )
