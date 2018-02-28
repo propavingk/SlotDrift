@@ -25,3 +25,15 @@ class Analysis:
 
     @property
     def findings(self) -> int:
+        return self.continuity.findings + self.forks.findings + len(self.parse_errors)
+
+
+def render_text(analysis: Analysis, limit: int | None = None) -> str:
+    limit = analysis.list_limit if limit is None else limit
+    c = analysis.continuity
+    f = analysis.forks
+    lines: list[str] = []
+    lines.append("SLOTDRIFT REPORT")
+    lines.append(f"input: {analysis.source}")
+    window = "empty"
+    if c.min_slot is not None:
