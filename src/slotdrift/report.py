@@ -61,3 +61,15 @@ def render_text(analysis: Analysis, limit: int | None = None) -> str:
         lines.append(f"  slot {slot} parent {parent}: {reason}")
     if len(c.parent_anomalies) > limit:
         lines.append(f"  ... {len(c.parent_anomalies) - limit} more")
+    if not c.parent_anomalies:
+        lines.append("  none")
+    lines.append("")
+    lines.append(f"FORKS (first {limit})")
+    for slot, hashes in sorted(f.duplicate_slots.items())[:limit]:
+        lines.append(f"  duplicate slot {slot}: {len(hashes)} blockhashes")
+    if len(f.duplicate_slots) > limit:
+        lines.append(f"  ... {len(f.duplicate_slots) - limit} more duplicate slots")
+    for segment in f.orphan_segments[:limit]:
+        mix = ", ".join(f"{k} {v}" for k, v in sorted(segment.commitments.items()))
+        lines.append(
+            "  orphan segment "
