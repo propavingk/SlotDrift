@@ -37,3 +37,15 @@ def render_text(analysis: Analysis, limit: int | None = None) -> str:
     lines.append(f"input: {analysis.source}")
     window = "empty"
     if c.min_slot is not None:
+        window = f"{c.min_slot}..{c.max_slot}"
+    lines.append(
+        f"records: {analysis.record_count} | window: {window} | parse errors: {len(analysis.parse_errors)}"
+    )
+    lines.append("")
+    lines.append("CONTINUITY")
+    lines.append(f"  missing slots: {len(c.missing)}")
+    lines.append(f"  duplicate slots: {len(c.duplicates)}")
+    lines.append(f"  parent anomalies: {len(c.parent_anomalies)}")
+    lines.append(f"  skipped slots: {len(c.skipped)}")
+    lines.append("")
+    lines.append(f"GAPS (first {limit})")
