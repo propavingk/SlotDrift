@@ -49,3 +49,15 @@ def render_text(analysis: Analysis, limit: int | None = None) -> str:
     lines.append(f"  skipped slots: {len(c.skipped)}")
     lines.append("")
     lines.append(f"GAPS (first {limit})")
+    for slot in c.missing[:limit]:
+        lines.append(f"  slot {slot}")
+    if len(c.missing) > limit:
+        lines.append(f"  ... {len(c.missing) - limit} more")
+    if not c.missing:
+        lines.append("  none")
+    lines.append("")
+    lines.append(f"PARENT ANOMALIES (first {limit})")
+    for slot, parent, reason in c.parent_anomalies[:limit]:
+        lines.append(f"  slot {slot} parent {parent}: {reason}")
+    if len(c.parent_anomalies) > limit:
+        lines.append(f"  ... {len(c.parent_anomalies) - limit} more")
