@@ -101,3 +101,20 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
                 continue
             if parent < slot - 1:
                 bridge = range(parent + 1, slot)
+                not_skipped = [s for s in bridge if s not in skipped_slots]
+                if not_skipped:
+                    report.parent_anomalies.append(
+                        (slot, parent, "step over slots not marked skipped")
+                    )
+
+    leaders: dict[str, LeaderStats] = {}
+    for record in records:
+        if not record.leader:
+            continue
+        stats = leaders.setdefault(record.leader, LeaderStats(leader=record.leader))
+        stats.scheduled += 1
+        if record.skipped:
+            stats.skipped += 1
+        else:
+            stats.produced += 1
+    report.leaders = leaders
