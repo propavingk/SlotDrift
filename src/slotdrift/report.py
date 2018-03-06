@@ -73,3 +73,16 @@ def render_text(analysis: Analysis, limit: int | None = None) -> str:
         mix = ", ".join(f"{k} {v}" for k, v in sorted(segment.commitments.items()))
         lines.append(
             "  orphan segment "
+            f"{segment.start_slot}..{segment.end_slot} "
+            f"({segment.length} slots, attached at parent {segment.root_parent}, {mix})"
+        )
+    if not f.duplicate_slots and not f.orphan_segments:
+        lines.append("  none")
+    lines.append("")
+    lines.append(f"LEADERS (top {min(5, limit)} by skip rate)")
+    ranked = sorted(
+        c.leaders.values(),
+        key=lambda s: (-s.skip_rate, -s.skipped, s.leader),
+    )
+    for stats in ranked[: min(5, limit)]:
+        lines.append(
