@@ -86,3 +86,15 @@ def render_text(analysis: Analysis, limit: int | None = None) -> str:
     )
     for stats in ranked[: min(5, limit)]:
         lines.append(
+            f"  {stats.leader}  skipped {stats.skipped}/{stats.scheduled} "
+            f"({stats.skip_rate * 100:.1f}%)"
+        )
+    if not ranked:
+        lines.append("  none")
+    lines.append("")
+    lines.append(f"PARSE ERRORS (first {limit})")
+    for number, message in analysis.parse_errors[:limit]:
+        lines.append(f"  {message}")
+    if len(analysis.parse_errors) > limit:
+        lines.append(f"  ... {len(analysis.parse_errors) - limit} more")
+    if not analysis.parse_errors:
