@@ -110,3 +110,15 @@ def render_json(analysis: Analysis) -> dict:
     return {
         "input": analysis.source,
         "records": analysis.record_count,
+        "window": {"min": c.min_slot, "max": c.max_slot, "size": c.window},
+        "findings": analysis.findings,
+        "continuity": {
+            "missing": c.missing,
+            "duplicates": {str(k): v for k, v in sorted(c.duplicates.items())},
+            "parent_anomalies": [
+                {"slot": slot, "parent": parent, "reason": reason}
+                for slot, parent, reason in c.parent_anomalies
+            ],
+            "skipped": c.skipped,
+        },
+        "forks": {
