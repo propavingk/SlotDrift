@@ -9,3 +9,15 @@ Usage (from the repository root):
     python scripts/parity.py
 
 Exit 0 when every fixture agrees, 1 otherwise.
+"""
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+FIXTURES = ["clean-window.jsonl", "cluster-window.jsonl", "broken-lines.jsonl"]
+
