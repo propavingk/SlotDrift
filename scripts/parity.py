@@ -45,3 +45,15 @@ def python_numbers(fixture: Path) -> dict:
         cwd=str(ROOT),
     )
     payload = json.loads(result.stdout)
+    continuity = payload["continuity"]
+    forks = payload["forks"]
+    duplicate_extra = sum(continuity["duplicates"].values()) - len(continuity["duplicates"])
+    return {
+        "records": payload["records"],
+        "parse_errors": len(payload["parse_errors"]),
+        "missing": len(continuity["missing"]),
+        "duplicates": len(continuity["duplicates"]),
+        "parent_anomalies": len(continuity["parent_anomalies"]),
+        "skipped": len(continuity["skipped"]),
+        "duplicate_slots": len(forks["duplicate_slots"]),
+        "orphan_segments": len(forks["orphan_segments"]),
