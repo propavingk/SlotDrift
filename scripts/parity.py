@@ -33,3 +33,15 @@ KEYS = [
     "orphan_count",
     "findings",
 ]
+
+
+def python_numbers(fixture: Path) -> dict:
+    env = dict(os.environ, PYTHONPATH=str(ROOT / "src"))
+    result = subprocess.run(
+        [sys.executable, "-m", "slotdrift", "analyze", str(fixture), "--format", "json"],
+        capture_output=True,
+        text=True,
+        env=env,
+        cwd=str(ROOT),
+    )
+    payload = json.loads(result.stdout)
