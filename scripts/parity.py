@@ -21,3 +21,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ["clean-window.jsonl", "cluster-window.jsonl", "broken-lines.jsonl"]
 
+KEYS = [
+    "records",
+    "parse_errors",
+    "missing",
+    "duplicates",
+    "parent_anomalies",
+    "skipped",
+    "duplicate_slots",
+    "orphan_segments",
+    "orphan_count",
+    "findings",
+]
