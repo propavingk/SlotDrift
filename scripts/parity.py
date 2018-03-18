@@ -57,3 +57,15 @@ def python_numbers(fixture: Path) -> dict:
         "skipped": len(continuity["skipped"]),
         "duplicate_slots": len(forks["duplicate_slots"]),
         "orphan_segments": len(forks["orphan_segments"]),
+        "orphan_count": forks["orphan_segments"] and sum(
+            s["length"] for s in forks["orphan_segments"]
+        ),
+        "findings": payload["findings"],
+    }
+
+
+def rust_numbers(fixture: Path) -> dict:
+    result = subprocess.run(
+        [
+            "cargo",
+            "run",
