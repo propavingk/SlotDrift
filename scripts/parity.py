@@ -69,3 +69,14 @@ def rust_numbers(fixture: Path) -> dict:
         [
             "cargo",
             "run",
+            "--quiet",
+            "--manifest-path",
+            str(ROOT / "engine" / "Cargo.toml"),
+            "--",
+            "analyze",
+            str(fixture),
+        ],
+        capture_output=True,
+        text=True,
+        cwd=str(ROOT),
+    )
