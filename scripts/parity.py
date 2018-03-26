@@ -80,3 +80,15 @@ def rust_numbers(fixture: Path) -> dict:
         text=True,
         cwd=str(ROOT),
     )
+    numbers = {}
+    for line in result.stdout.splitlines():
+        if ":" in line:
+            key, _, value = line.partition(":")
+            numbers[key.strip()] = value.strip()
+    return numbers
+
+
+def main() -> int:
+    failures = 0
+    for name in FIXTURES:
+        fixture = ROOT / "samples" / name
