@@ -33,3 +33,19 @@ BANNED_TERMS = [
 
 # The forms are assembled from parts so this file does not contain them
 # literally: a checker that flags itself is not a checker.
+EM_DASH_FORMS = [chr(0x2014), "&#" + "8212;", "&mdash" + ";"]
+
+
+def svg_files() -> list[Path]:
+    return sorted(ASSETS.glob("*.svg"))
+
+
+def check_svg_parse() -> tuple[bool, str]:
+    bad = []
+    for path in svg_files():
+        try:
+            ET.parse(path)
+        except ET.ParseError as exc:
+            bad.append(f"{path.name}: {exc}")
+    if bad:
+        return False, "svg parse: " + "; ".join(bad)
