@@ -18,3 +18,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs" / "assets"
+
+TEXT_EXTENSIONS = {
+    ".py", ".md", ".svg", ".yml", ".yaml", ".toml", ".cff", ".jsonl",
+    ".txt", ".cfg", ".ini", ".editorconfig", ".gitattributes", ".gitignore",
+    ".html", ".css", ".js", ".ts", ".rs", ".go", ".sh",
+}
+
+BANNED_TERMS = [
+    "AI powered", "seamless", "revolutionary", "enterprise-grade",
+    "next generation", "cutting edge", "blazing fast", "production ready",
+    "battle tested", "lightning fast", "effortless",
+]
+
+# The forms are assembled from parts so this file does not contain them
+# literally: a checker that flags itself is not a checker.
