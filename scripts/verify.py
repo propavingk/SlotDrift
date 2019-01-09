@@ -49,3 +49,18 @@ def check_svg_parse() -> tuple[bool, str]:
             bad.append(f"{path.name}: {exc}")
     if bad:
         return False, "svg parse: " + "; ".join(bad)
+    return True, f"svg parse: {len(svg_files())} files well formed"
+
+
+def check_svg_filters() -> tuple[bool, str]:
+    bad = []
+    for path in svg_files():
+        text = path.read_text(encoding="utf-8")
+        for token in ("feGaussianBlur", "feDropShadow", "feTurbulence"):
+            if token in text:
+                bad.append(f"{path.name}: {token}")
+    if bad:
+        return False, "svg filters: " + "; ".join(bad)
+    return True, "svg filters: none present"
+
+
