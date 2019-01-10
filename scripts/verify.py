@@ -64,3 +64,19 @@ def check_svg_filters() -> tuple[bool, str]:
     return True, "svg filters: none present"
 
 
+def check_svg_comments() -> tuple[bool, str]:
+    bad = []
+    for path in svg_files():
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"<!--(.*?)-->", text, re.S):
+            if "--" in match.group(1):
+                bad.append(path.name)
+                break
+    if bad:
+        return False, "svg comments: double hyphen in " + ", ".join(bad)
+    return True, "svg comments: no illegal double hyphen"
+
+
+def check_em_dash() -> tuple[bool, str]:
+    bad = []
+    for path in sorted(ROOT.rglob("*")):
