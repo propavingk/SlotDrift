@@ -95,3 +95,18 @@ def check_em_dash() -> tuple[bool, str]:
                 bad.append(str(path.relative_to(ROOT)))
                 break
     if bad:
+        return False, "em dash: found in " + ", ".join(bad)
+    return True, "em dash: none in any text file"
+
+
+def check_readme_attr_blocks() -> tuple[bool, str]:
+    text = (ROOT / "README.md").read_text(encoding="utf-8")
+    if re.search(r"\)\{(?:[^}]*)(?:width|height)", text):
+        return False, "readme attributes: pandoc style block found"
+    return True, "readme attributes: no pandoc style blocks"
+
+
+def check_readme_terms() -> tuple[bool, str]:
+    text = (ROOT / "README.md").read_text(encoding="utf-8").lower()
+    hits = [term for term in BANNED_TERMS if term.lower() in text]
+    if hits:
