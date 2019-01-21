@@ -126,3 +126,18 @@ def check_svg_metadata() -> tuple[bool, str]:
             bad.append(f"{path.name}: role")
         if root.find("{http://www.w3.org/2000/svg}title") is None:
             bad.append(f"{path.name}: title")
+        if root.find("{http://www.w3.org/2000/svg}desc") is None:
+            bad.append(f"{path.name}: desc")
+    if bad:
+        return False, "svg metadata: " + "; ".join(bad)
+    return True, "svg metadata: viewBox, role, title, desc present"
+
+
+def _text_width(content: str, font_size: float, font_family: str) -> float:
+    per_char = 0.60 if "mono" in font_family.lower() else 0.58
+    return len(content) * font_size * per_char
+
+
+def check_svg_label_overlap() -> tuple[bool, str]:
+    bad = []
+    ns = "{http://www.w3.org/2000/svg}"
