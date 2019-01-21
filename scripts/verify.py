@@ -156,3 +156,19 @@ def check_svg_label_overlap() -> tuple[bool, str]:
             font_size = float(element.attrib.get("font-size", "11"))
             family = element.attrib.get("font-family", "")
             anchor = element.attrib.get("text-anchor", "start")
+            width = _text_width(content, font_size, family)
+            if anchor == "middle":
+                left = x - width / 2
+            elif anchor == "end":
+                left = x - width
+            else:
+                left = x
+            labels.append((round(y), left, left + width, content))
+        for baseline in {label[0] for label in labels}:
+            row = sorted([label for label in labels if label[0] == baseline], key=lambda l: l[1])
+            for previous, current in zip(row, row[1:]):
+                if current[1] < previous[2] - 0.5:
+                    bad.append(
+                        f"{path.name}: '{previous[3]}' overlaps '{current[3]}' at y={baseline}"
+                    )
+    if bad:
