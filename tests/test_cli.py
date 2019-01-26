@@ -41,3 +41,12 @@ class ExitCodeTests(unittest.TestCase):
             run(["analyze", str(SAMPLES / "does-not-exist.jsonl")])
         self.assertEqual(caught.exception.code, 2)
 
+    def test_version_exits_zero(self):
+        with self.assertRaises(SystemExit) as caught:
+            run(["--version"])
+        self.assertEqual(caught.exception.code, 0)
+
+
+class FormatTests(unittest.TestCase):
+    def test_json_output_has_expected_shape(self):
+        buffer = io.StringIO()
