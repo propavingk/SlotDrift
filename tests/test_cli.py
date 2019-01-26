@@ -24,3 +24,12 @@ class ExitCodeTests(unittest.TestCase):
         code, output = run(["analyze", str(SAMPLES / "clean-window.jsonl")])
         self.assertEqual(code, 0)
         self.assertIn("FINDINGS: 0", output)
+
+    def test_cluster_window_exits_one(self):
+        code, output = run(["analyze", str(SAMPLES / "cluster-window.jsonl")])
+        self.assertEqual(code, 1)
+        self.assertIn("FINDINGS: 12", output)
+
+    def test_broken_lines_exit_one_with_parse_errors(self):
+        code, output = run(["analyze", str(SAMPLES / "broken-lines.jsonl")])
+        self.assertEqual(code, 1)
