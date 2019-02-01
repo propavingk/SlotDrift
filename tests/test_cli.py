@@ -50,3 +50,12 @@ class ExitCodeTests(unittest.TestCase):
 class FormatTests(unittest.TestCase):
     def test_json_output_has_expected_shape(self):
         buffer = io.StringIO()
+        with contextlib.redirect_stdout(buffer):
+            code = main(
+                ["analyze", str(SAMPLES / "cluster-window.jsonl"), "--format", "json"]
+            )
+        self.assertEqual(code, 1)
+        payload = json.loads(buffer.getvalue())
+        self.assertEqual(payload["records"], 64)
+        self.assertEqual(payload["findings"], 12)
+        self.assertEqual(payload["forks"]["canonical_tip"], 320400060)
