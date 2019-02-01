@@ -59,3 +59,12 @@ class FormatTests(unittest.TestCase):
         self.assertEqual(payload["records"], 64)
         self.assertEqual(payload["findings"], 12)
         self.assertEqual(payload["forks"]["canonical_tip"], 320400060)
+        self.assertEqual(len(payload["forks"]["orphan_segments"]), 2)
+        self.assertEqual(payload["parse_errors"], [])
+
+    def test_limit_truncates_lists(self):
+        code, output = run(
+            ["analyze", str(SAMPLES / "cluster-window.jsonl"), "--limit", "1"]
+        )
+        self.assertEqual(code, 1)
+        self.assertIn("... 2 more duplicate slots", output)
