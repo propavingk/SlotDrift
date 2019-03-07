@@ -22,3 +22,14 @@ class CleanWindowTests(unittest.TestCase):
         self.assertEqual(self.report.max_slot, 100000029)
         self.assertEqual(self.report.window, 30)
 
+    def test_no_findings(self):
+        self.assertEqual(self.report.missing, [])
+        self.assertEqual(self.report.duplicates, {})
+        self.assertEqual(self.report.parent_anomalies, [])
+        self.assertEqual(self.report.findings, 0)
+
+    def test_skipped_slots_recorded(self):
+        self.assertEqual(self.report.skipped, [100000010, 100000011])
+
+    def test_boundary_parent_below_window_is_not_an_anomaly(self):
+        self.assertEqual(self.report.parent_anomalies, [])
