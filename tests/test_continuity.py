@@ -33,3 +33,15 @@ class CleanWindowTests(unittest.TestCase):
 
     def test_boundary_parent_below_window_is_not_an_anomaly(self):
         self.assertEqual(self.report.parent_anomalies, [])
+
+
+class InMemoryTests(unittest.TestCase):
+    def test_missing_slot_detected(self):
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized"}',
+                '{"slot": 3, "parent": 1, "commitment": "finalized"}',
+            ]
+        )
+        records, errors = parse_text(text)
+        self.assertEqual(errors, [])
