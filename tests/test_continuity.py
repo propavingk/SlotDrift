@@ -45,3 +45,14 @@ class InMemoryTests(unittest.TestCase):
         )
         records, errors = parse_text(text)
         self.assertEqual(errors, [])
+        report = analyze_continuity(records)
+        self.assertEqual(report.missing, [2])
+
+    def test_duplicate_slot_counted(self):
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized", "blockhash": "A"}',
+                '{"slot": 1, "parent": 0, "commitment": "processed", "blockhash": "B"}',
+            ]
+        )
+        records, _ = parse_text(text)
