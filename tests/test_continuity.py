@@ -56,3 +56,15 @@ class InMemoryTests(unittest.TestCase):
             ]
         )
         records, _ = parse_text(text)
+        report = analyze_continuity(records)
+        self.assertEqual(report.duplicates, {1: 2})
+
+    def test_parent_marked_skipped_is_an_anomaly(self):
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized"}',
+                '{"slot": 2, "commitment": "skipped"}',
+                '{"slot": 3, "parent": 2, "commitment": "finalized"}',
+            ]
+        )
+        records, _ = parse_text(text)
