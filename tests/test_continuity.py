@@ -80,3 +80,14 @@ class InMemoryTests(unittest.TestCase):
                 '{"slot": 2, "parent": 1, "commitment": "finalized"}',
                 '{"slot": 3, "parent": 1, "commitment": "finalized"}',
             ]
+        )
+        records, _ = parse_text(text)
+        report = analyze_continuity(records)
+        self.assertEqual(
+            report.parent_anomalies, [(3, 1, "step over slots not marked skipped")]
+        )
+
+    def test_step_over_skipped_slots_is_not_an_anomaly(self):
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized"}',
