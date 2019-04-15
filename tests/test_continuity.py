@@ -91,3 +91,15 @@ class InMemoryTests(unittest.TestCase):
         text = "\n".join(
             [
                 '{"slot": 1, "parent": 0, "commitment": "finalized"}',
+                '{"slot": 2, "commitment": "skipped"}',
+                '{"slot": 3, "commitment": "skipped"}',
+                '{"slot": 4, "parent": 1, "commitment": "finalized"}',
+            ]
+        )
+        records, _ = parse_text(text)
+        report = analyze_continuity(records)
+        self.assertEqual(report.parent_anomalies, [])
+
+    def test_leader_stats_and_skip_rate(self):
+        text = "\n".join(
+            [
