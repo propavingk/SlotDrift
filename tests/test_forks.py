@@ -16,3 +16,12 @@ class ClusterWindowTests(unittest.TestCase):
         records, errors = parse_file(SAMPLES / "cluster-window.jsonl")
         assert not errors
         cls.report = find_forks(records)
+
+    def test_duplicate_slots(self):
+        self.assertEqual(
+            sorted(self.report.duplicate_slots), [320400040, 320400041, 320400042]
+        )
+        for hashes in self.report.duplicate_slots.values():
+            self.assertEqual(len(hashes), 2)
+
+    def test_canonical_tip(self):
