@@ -33,3 +33,12 @@ class ClusterWindowTests(unittest.TestCase):
         rival = segments[0]
         self.assertEqual((rival.start_slot, rival.end_slot), (320400040, 320400042))
         self.assertEqual(rival.length, 3)
+        self.assertEqual(rival.root_parent, 320400039)
+        self.assertEqual(rival.commitments, {"processed": 3})
+        reorg = segments[1]
+        self.assertEqual((reorg.start_slot, reorg.end_slot), (320400056, 320400057))
+        self.assertEqual(reorg.length, 2)
+        self.assertEqual(reorg.root_parent, 320400055)
+        self.assertEqual(reorg.commitments, {"finalized": 2})
+
+    def test_orphan_count(self):
