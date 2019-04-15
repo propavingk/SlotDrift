@@ -25,3 +25,11 @@ class ClusterWindowTests(unittest.TestCase):
             self.assertEqual(len(hashes), 2)
 
     def test_canonical_tip(self):
+        self.assertEqual(self.report.canonical_tip, 320400060)
+
+    def test_orphan_segments(self):
+        segments = self.report.orphan_segments
+        self.assertEqual(len(segments), 2)
+        rival = segments[0]
+        self.assertEqual((rival.start_slot, rival.end_slot), (320400040, 320400042))
+        self.assertEqual(rival.length, 3)
