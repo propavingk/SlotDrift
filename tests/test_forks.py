@@ -51,3 +51,12 @@ class ClusterWindowTests(unittest.TestCase):
 class IdentityTests(unittest.TestCase):
     def test_orphan_detected_at_a_duplicated_slot(self):
         # Two blocks claim slot 1. The finalized one wins; the processed one is
+        # orphaned even though its slot number is canonical.
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized", "blockhash": "A"}',
+                '{"slot": 1, "parent": 0, "commitment": "processed", "blockhash": "B"}',
+                '{"slot": 2, "parent": 1, "commitment": "finalized", "blockhash": "C"}',
+            ]
+        )
+        records, _ = parse_text(text)
