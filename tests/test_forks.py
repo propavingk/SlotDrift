@@ -42,3 +42,12 @@ class ClusterWindowTests(unittest.TestCase):
         self.assertEqual(reorg.commitments, {"finalized": 2})
 
     def test_orphan_count(self):
+        self.assertEqual(self.report.orphan_count, 5)
+
+    def test_findings(self):
+        self.assertEqual(self.report.findings, 3 + 5)
+
+
+class IdentityTests(unittest.TestCase):
+    def test_orphan_detected_at_a_duplicated_slot(self):
+        # Two blocks claim slot 1. The finalized one wins; the processed one is
