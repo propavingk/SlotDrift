@@ -60,3 +60,11 @@ class IdentityTests(unittest.TestCase):
             ]
         )
         records, _ = parse_text(text)
+        report = find_forks(records)
+        self.assertEqual(report.duplicate_slots, {1: ["A", "B"]})
+        self.assertEqual(report.orphan_count, 1)
+        self.assertEqual(report.orphan_segments[0].start_slot, 1)
+
+    def test_single_chain_has_no_orphans(self):
+        text = "\n".join(
+            [
