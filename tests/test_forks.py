@@ -68,3 +68,12 @@ class IdentityTests(unittest.TestCase):
     def test_single_chain_has_no_orphans(self):
         text = "\n".join(
             [
+                '{"slot": 1, "parent": 0, "commitment": "finalized", "blockhash": "A"}',
+                '{"slot": 2, "parent": 1, "commitment": "finalized", "blockhash": "B"}',
+            ]
+        )
+        records, _ = parse_text(text)
+        report = find_forks(records)
+        self.assertEqual(report.duplicate_slots, {})
+        self.assertEqual(report.orphan_segments, [])
+        self.assertEqual(report.orphan_count, 0)
