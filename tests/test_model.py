@@ -33,3 +33,12 @@ class ParseRecordTests(unittest.TestCase):
         with self.assertRaises(FormatError):
             parse_record({"commitment": "finalized"}, 4)
 
+    def test_negative_slot_is_rejected(self):
+        with self.assertRaises(FormatError):
+            parse_record({"slot": -1, "commitment": "skipped"}, 4)
+
+    def test_unknown_commitment_is_rejected(self):
+        with self.assertRaises(FormatError):
+            parse_record({"slot": 5, "commitment": "maybe"}, 4)
+
+    def test_skipped_with_blockhash_is_rejected(self):
