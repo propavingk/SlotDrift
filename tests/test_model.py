@@ -24,3 +24,12 @@ class ParseRecordTests(unittest.TestCase):
         self.assertFalse(record.skipped)
         self.assertEqual(record.rank, 2)
 
+    def test_skipped_record_needs_no_parent(self):
+        record = parse_record({"slot": 11, "commitment": "skipped"}, 1)
+        self.assertTrue(record.skipped)
+        self.assertIsNone(record.parent)
+
+    def test_missing_slot_is_rejected(self):
+        with self.assertRaises(FormatError):
+            parse_record({"commitment": "finalized"}, 4)
+
