@@ -15,3 +15,12 @@ def decode(line: str) -> object:
 
 
 class ParseRecordTests(unittest.TestCase):
+    def test_minimal_valid_record(self):
+        record = parse_record(
+            {"slot": 10, "parent": 9, "commitment": "finalized", "leader": "A"}, 1
+        )
+        self.assertEqual(record.slot, 10)
+        self.assertEqual(record.parent, 9)
+        self.assertFalse(record.skipped)
+        self.assertEqual(record.rank, 2)
+
