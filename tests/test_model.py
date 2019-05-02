@@ -51,3 +51,12 @@ class ParseRecordTests(unittest.TestCase):
         with self.assertRaises(FormatError):
             parse_record({"slot": 5, "commitment": "finalized"}, 4)
 
+    def test_negative_tx_count_is_rejected(self):
+        with self.assertRaises(FormatError):
+            parse_record(
+                {"slot": 5, "parent": 4, "commitment": "finalized", "tx_count": -1}, 4
+            )
+
+    def test_unknown_keys_are_ignored(self):
+        record = parse_record(
+            {"slot": 5, "parent": 4, "commitment": "confirmed", "extra": {"a": 1}}, 1
