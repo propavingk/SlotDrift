@@ -60,3 +60,12 @@ class ParseRecordTests(unittest.TestCase):
     def test_unknown_keys_are_ignored(self):
         record = parse_record(
             {"slot": 5, "parent": 4, "commitment": "confirmed", "extra": {"a": 1}}, 1
+        )
+        self.assertEqual(record.commitment, "confirmed")
+
+
+class ParseTextTests(unittest.TestCase):
+    def test_blank_lines_are_ignored(self):
+        text = "\n\n" + json.dumps(
+            {"slot": 1, "commitment": "skipped"}
+        ) + "\n\n"
