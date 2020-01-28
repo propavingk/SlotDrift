@@ -4,3 +4,5 @@ version = "1.0.1"
 edition = "2021"
 description = "Independent Rust implementation of the slotdrift continuity and fork arithmetic."
 license = "MIT"
+publish = false
+
