@@ -6,3 +6,5 @@ description = "Independent Rust implementation of the slotdrift continuity and f
 license = "MIT"
 publish = false
 
+[[bin]]
+name = "slotdrift-engine"
