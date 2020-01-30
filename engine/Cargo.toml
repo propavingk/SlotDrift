@@ -8,3 +8,6 @@ publish = false
 
 [[bin]]
 name = "slotdrift-engine"
+path = "src/main.rs"
+
+[lib]
