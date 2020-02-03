@@ -50,3 +50,26 @@ pub struct Record {
 impl Record {
     pub fn skipped(&self) -> bool {
         self.commitment == Commitment::Skipped
+    }
+}
+
+/// Minimal JSON object reader for the fields this format uses. Unknown keys
+/// are skipped, and nested containers are skipped in a balanced way. This is
+/// not a general JSON parser and does not pretend to be one.
+/// One decoded key: its name, its raw text, and whether it was a quoted
+/// string. Kept as a small type alias so signatures stay readable.
+type Field = (String, (String, bool));
+type Fields = Vec<Field>;
+
+fn split_top_level(line: &str) -> Result<Fields, String> {
+    let bytes: Vec<char> = line.chars().collect();
+    let mut i = 0usize;
+    let n = bytes.len();
+    let skip_ws = |i: &mut usize| {
+        while *i < n && (bytes[*i] == ' ' || bytes[*i] == '\t') {
+            *i += 1;
+        }
+    };
+    skip_ws(&mut i);
+    if i >= n || bytes[i] != '{' {
+        return Err("record must be a JSON object".to_string());
