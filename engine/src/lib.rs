@@ -96,3 +96,26 @@ fn split_top_level(line: &str) -> Result<Fields, String> {
         skip_ws(&mut i);
         if i >= n || bytes[i] != ':' {
             return Err("expected ':' after key".to_string());
+        }
+        i += 1;
+        skip_ws(&mut i);
+        let (raw, is_string, next) = read_value(&bytes, i)?;
+        i = next;
+        pairs.push((key, (raw, is_string)));
+    }
+}
+
+fn read_string(bytes: &[char], start: usize) -> Result<(String, usize), String> {
+    let mut i = start + 1;
+    let mut out = String::new();
+    while i < bytes.len() {
+        let c = bytes[i];
+        if c == '\\' {
+            i += 1;
+            if i >= bytes.len() {
+                return Err("bad escape".to_string());
+            }
+            out.push(bytes[i]);
+            i += 1;
+            continue;
+        }
