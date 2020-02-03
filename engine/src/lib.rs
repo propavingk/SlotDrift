@@ -73,3 +73,26 @@ fn split_top_level(line: &str) -> Result<Fields, String> {
     skip_ws(&mut i);
     if i >= n || bytes[i] != '{' {
         return Err("record must be a JSON object".to_string());
+    }
+    i += 1;
+    let mut pairs = Vec::new();
+    loop {
+        skip_ws(&mut i);
+        if i >= n {
+            return Err("unterminated object".to_string());
+        }
+        if bytes[i] == '}' {
+            return Ok(pairs);
+        }
+        if bytes[i] == ',' {
+            i += 1;
+            continue;
+        }
+        if bytes[i] != '"' {
+            return Err("expected a quoted key".to_string());
+        }
+        let (key, next) = read_string(&bytes, i)?;
+        i = next;
+        skip_ws(&mut i);
+        if i >= n || bytes[i] != ':' {
+            return Err("expected ':' after key".to_string());
