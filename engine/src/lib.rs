@@ -142,3 +142,26 @@ fn read_value(bytes: &[char], start: usize) -> Result<(String, bool, usize), Str
             '{' | '[' => {
                 depth += 1;
                 if depth > 1 {
+                    pending.push(c);
+                }
+            }
+            '}' | ']' => {
+                if depth == 0 {
+                    break;
+                }
+                depth -= 1;
+                if depth > 0 {
+                    pending.push(c);
+                } else {
+                    i += 1;
+                    return Ok((pending, false, i));
+                }
+            }
+            ',' if depth == 0 => break,
+            _ => pending.push(c),
+        }
+        i += 1;
+    }
+    Ok((pending.trim().to_string(), false, i))
+}
+
