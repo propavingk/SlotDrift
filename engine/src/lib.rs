@@ -119,3 +119,26 @@ fn read_string(bytes: &[char], start: usize) -> Result<(String, usize), String> 
             i += 1;
             continue;
         }
+        if c == '"' {
+            return Ok((out, i + 1));
+        }
+        out.push(c);
+        i += 1;
+    }
+    Err("unterminated string".to_string())
+}
+
+fn read_value(bytes: &[char], start: usize) -> Result<(String, bool, usize), String> {
+    let mut i = start;
+    if i < bytes.len() && bytes[i] == '"' {
+        let (value, next) = read_string(bytes, i)?;
+        return Ok((value, true, next));
+    }
+    let mut depth = 0i32;
+    let mut pending = String::new();
+    while i < bytes.len() {
+        let c = bytes[i];
+        match c {
+            '{' | '[' => {
+                depth += 1;
+                if depth > 1 {
