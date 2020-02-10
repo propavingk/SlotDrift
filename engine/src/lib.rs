@@ -165,3 +165,25 @@ fn read_value(bytes: &[char], start: usize) -> Result<(String, bool, usize), Str
     Ok((pending.trim().to_string(), false, i))
 }
 
+pub fn parse_line(line: &str) -> Result<Record, String> {
+    let pairs = split_top_level(line)?;
+    let map: HashMap<String, (String, bool)> = pairs.into_iter().collect();
+
+    let (slot_raw, slot_is_string) = map.get("slot").ok_or("missing required field 'slot'")?;
+    if *slot_is_string {
+        return Err("field 'slot' must be an integer".to_string());
+    }
+    let slot: i64 = slot_raw
+        .parse()
+        .map_err(|_| "field 'slot' must be an integer")?;
+    if slot < 0 {
+        return Err("field 'slot' must be >= 0".to_string());
+    }
+
+    let (commitment_raw, commitment_is_string) = map
+        .get("commitment")
+        .ok_or("missing required field 'commitment'")?;
+    if !*commitment_is_string {
+        return Err(
+            "commitment must be one of skipped, processed, confirmed, finalized".to_string(),
+        );
