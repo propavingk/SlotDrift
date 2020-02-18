@@ -187,3 +187,26 @@ pub fn parse_line(line: &str) -> Result<Record, String> {
         return Err(
             "commitment must be one of skipped, processed, confirmed, finalized".to_string(),
         );
+    }
+    let commitment = Commitment::parse(commitment_raw)
+        .ok_or("commitment must be one of skipped, processed, confirmed, finalized")?;
+
+    let mut parent: Option<i64> = None;
+    if let Some((raw, is_string)) = map.get("parent") {
+        if raw == "null" && !*is_string {
+            parent = None;
+        } else {
+            if *is_string {
+                return Err("field 'parent' must be an integer".to_string());
+            }
+            let parsed: i64 = raw
+                .parse()
+                .map_err(|_| "field 'parent' must be an integer")?;
+            if parsed < 0 {
+                return Err("field 'parent' must be >= 0".to_string());
+            }
+            parent = Some(parsed);
+        }
+    }
+
+    if let Some((raw, is_string)) = map.get("tx_count") {
