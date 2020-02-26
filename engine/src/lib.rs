@@ -210,3 +210,26 @@ pub fn parse_line(line: &str) -> Result<Record, String> {
     }
 
     if let Some((raw, is_string)) = map.get("tx_count") {
+        if !(raw == "null" && !*is_string) {
+            if *is_string {
+                return Err("field 'tx_count' must be an integer".to_string());
+            }
+            let parsed: i64 = raw
+                .parse()
+                .map_err(|_| "field 'tx_count' must be an integer")?;
+            if parsed < 0 {
+                return Err("field 'tx_count' must be >= 0".to_string());
+            }
+        }
+    }
+
+    let mut leader: Option<String> = None;
+    if let Some((raw, is_string)) = map.get("leader") {
+        if !(raw == "null" && !*is_string) {
+            if !*is_string || raw.is_empty() {
+                return Err("field 'leader' must be a non-empty string".to_string());
+            }
+            leader = Some(raw.clone());
+        }
+    }
+
