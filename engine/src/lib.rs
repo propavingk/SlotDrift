@@ -233,3 +233,26 @@ pub fn parse_line(line: &str) -> Result<Record, String> {
         }
     }
 
+    let mut blockhash: Option<String> = None;
+    if let Some((raw, is_string)) = map.get("blockhash") {
+        if !(raw == "null" && !*is_string) {
+            if !*is_string || raw.is_empty() {
+                return Err("field 'blockhash' must be a non-empty string".to_string());
+            }
+            blockhash = Some(raw.clone());
+        }
+    }
+
+    if commitment != Commitment::Skipped && parent.is_none() {
+        return Err("a produced slot must carry a parent".to_string());
+    }
+    if commitment == Commitment::Skipped && blockhash.is_some() {
+        return Err("a skipped slot cannot carry a blockhash".to_string());
+    }
+    Ok(Record {
+        slot,
+        parent,
+        commitment,
+        leader,
+        blockhash,
+    })
