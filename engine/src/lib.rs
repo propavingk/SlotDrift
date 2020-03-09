@@ -256,3 +256,26 @@ pub fn parse_line(line: &str) -> Result<Record, String> {
         leader,
         blockhash,
     })
+}
+
+pub fn parse_text(text: &str) -> (Vec<Record>, Vec<(usize, String)>) {
+    let mut records = Vec::new();
+    let mut errors = Vec::new();
+    for (index, line) in text.lines().enumerate() {
+        if line.trim().is_empty() {
+            continue;
+        }
+        match parse_line(line) {
+            Ok(record) => records.push(record),
+            Err(message) => errors.push((index + 1, format!("line {}: {}", index + 1, message))),
+        }
+    }
+    (records, errors)
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct LeaderStats {
+    pub scheduled: usize,
+    pub skipped: usize,
+    pub produced: usize,
+}
