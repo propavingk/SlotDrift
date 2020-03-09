@@ -302,3 +302,25 @@ pub fn analyze_continuity(records: &[Record]) -> Continuity {
     }
     let min_slot = *by_slot.keys().next().unwrap();
     let max_slot = *by_slot.keys().next_back().unwrap();
+    out.min_slot = Some(min_slot);
+    out.max_slot = Some(max_slot);
+
+    for slot in min_slot..=max_slot {
+        if !by_slot.contains_key(&slot) {
+            out.missing.push(slot);
+        }
+    }
+    for (slot, group) in &by_slot {
+        if group.len() > 1 {
+            out.duplicate_slots.insert(*slot, group.len());
+        }
+    }
+    let skipped_slots: BTreeSet<i64> = records
+        .iter()
+        .filter(|r| r.skipped())
+        .map(|r| r.slot)
+        .collect();
+    out.skipped = skipped_slots.iter().copied().collect();
+
+    let present: BTreeSet<i64> = by_slot.keys().copied().collect();
+    for record in records.iter().filter(|r| !r.skipped()) {
