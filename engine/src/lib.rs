@@ -279,3 +279,26 @@ pub struct LeaderStats {
     pub skipped: usize,
     pub produced: usize,
 }
+
+#[derive(Debug, Default)]
+pub struct Continuity {
+    pub min_slot: Option<i64>,
+    pub max_slot: Option<i64>,
+    pub missing: Vec<i64>,
+    pub duplicate_slots: BTreeMap<i64, usize>,
+    pub skipped: Vec<i64>,
+    pub parent_anomalies: Vec<(i64, Option<i64>, String)>,
+    pub leaders: BTreeMap<String, LeaderStats>,
+}
+
+pub fn analyze_continuity(records: &[Record]) -> Continuity {
+    let mut out = Continuity::default();
+    if records.is_empty() {
+        return out;
+    }
+    let mut by_slot: BTreeMap<i64, Vec<&Record>> = BTreeMap::new();
+    for record in records {
+        by_slot.entry(record.slot).or_default().push(record);
+    }
+    let min_slot = *by_slot.keys().next().unwrap();
+    let max_slot = *by_slot.keys().next_back().unwrap();
