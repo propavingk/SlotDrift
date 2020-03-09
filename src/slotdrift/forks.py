@@ -95,3 +95,20 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
         segment = [seed]
         parent = seed.parent
         while parent in remaining:
+            nxt = remaining.pop(parent)
+            segment.append(nxt)
+            parent = nxt.parent
+        segment.sort(key=lambda r: r.slot)
+        commitments: dict[str, int] = {}
+        for record in segment:
+            commitments[record.commitment] = commitments.get(record.commitment, 0) + 1
+        report.orphan_segments.append(
+            OrphanSegment(
+                start_slot=segment[0].slot,
+                end_slot=segment[-1].slot,
+                length=len(segment),
+                root_parent=segment[0].parent,
+                commitments=commitments,
+            )
+        )
+    report.orphan_segments.sort(key=lambda s: s.start_slot)
