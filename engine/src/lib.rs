@@ -324,3 +324,26 @@ pub fn analyze_continuity(records: &[Record]) -> Continuity {
 
     let present: BTreeSet<i64> = by_slot.keys().copied().collect();
     for record in records.iter().filter(|r| !r.skipped()) {
+        let parent = match record.parent {
+            Some(p) => p,
+            None => continue,
+        };
+        if !present.contains(&parent) {
+            if parent < min_slot {
+                continue;
+            }
+            out.parent_anomalies.push((
+                record.slot,
+                Some(parent),
+                "parent absent from export".to_string(),
+            ));
+            continue;
+        }
+        if parent >= record.slot {
+            out.parent_anomalies.push((
+                record.slot,
+                Some(parent),
+                "parent not earlier than block".to_string(),
+            ));
+            continue;
+        }
