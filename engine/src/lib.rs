@@ -370,3 +370,26 @@ pub fn analyze_continuity(records: &[Record]) -> Continuity {
     for record in records {
         if let Some(leader) = &record.leader {
             let stats = out.leaders.entry(leader.clone()).or_default();
+            stats.scheduled += 1;
+            if record.skipped() {
+                stats.skipped += 1;
+            } else {
+                stats.produced += 1;
+            }
+        }
+    }
+    out
+}
+
+#[derive(Debug, Clone)]
+pub struct OrphanSegment {
+    pub start_slot: i64,
+    pub end_slot: i64,
+    pub length: usize,
+    pub root_parent: Option<i64>,
+    pub processed: usize,
+    pub finalized: usize,
+}
+
+#[derive(Debug, Default)]
+pub struct Forks {
