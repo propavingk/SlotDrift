@@ -347,3 +347,26 @@ pub fn analyze_continuity(records: &[Record]) -> Continuity {
             ));
             continue;
         }
+        if skipped_slots.contains(&parent) {
+            out.parent_anomalies.push((
+                record.slot,
+                Some(parent),
+                "parent slot is marked skipped".to_string(),
+            ));
+            continue;
+        }
+        if parent < record.slot - 1 {
+            let bridge: Vec<i64> = (parent + 1..record.slot).collect();
+            let not_skipped = bridge.iter().any(|s| !skipped_slots.contains(s));
+            if not_skipped {
+                out.parent_anomalies.push((
+                    record.slot,
+                    Some(parent),
+                    "step over slots not marked skipped".to_string(),
+                ));
+            }
+        }
+    }
+    for record in records {
+        if let Some(leader) = &record.leader {
+            let stats = out.leaders.entry(leader.clone()).or_default();
