@@ -393,3 +393,26 @@ pub struct OrphanSegment {
 
 #[derive(Debug, Default)]
 pub struct Forks {
+    pub duplicate_slots: BTreeMap<i64, Vec<String>>,
+    pub orphan_segments: Vec<OrphanSegment>,
+    pub orphan_count: usize,
+    pub canonical_tip: Option<i64>,
+}
+
+fn best_record<'a>(group: &[&'a Record]) -> &'a Record {
+    // Strongest commitment, then highest slot, then smallest blockhash.
+    let mut best = group[0];
+    for candidate in group.iter().skip(1) {
+        let better = candidate.commitment.rank() > best.commitment.rank()
+            || (candidate.commitment.rank() == best.commitment.rank()
+                && (candidate.slot > best.slot
+                    || (candidate.slot == best.slot
+                        && candidate.blockhash.clone().unwrap_or_default()
+                            < best.blockhash.clone().unwrap_or_default())));
+        if better {
+            best = candidate;
+        }
+    }
+    best
+}
+
