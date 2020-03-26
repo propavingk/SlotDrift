@@ -416,3 +416,26 @@ fn best_record<'a>(group: &[&'a Record]) -> &'a Record {
     best
 }
 
+pub fn find_forks(records: &[Record]) -> Forks {
+    let mut out = Forks::default();
+    let produced: Vec<&Record> = records.iter().filter(|r| !r.skipped()).collect();
+    if produced.is_empty() {
+        return out;
+    }
+    let mut by_slot: BTreeMap<i64, Vec<&Record>> = BTreeMap::new();
+    for record in records {
+        by_slot.entry(record.slot).or_default().push(record);
+    }
+    for (slot, group) in &by_slot {
+        let mut hashes: BTreeSet<String> = BTreeSet::new();
+        for record in group {
+            if let Some(hash) = &record.blockhash {
+                hashes.insert(hash.clone());
+            }
+        }
+        if hashes.len() > 1 {
+            out.duplicate_slots
+                .insert(*slot, hashes.into_iter().collect());
+        }
+    }
+    let mut best: BTreeMap<i64, &Record> = BTreeMap::new();
