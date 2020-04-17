@@ -35,3 +35,10 @@ fn main() {
     let missing = continuity.missing.len();
     let duplicates = continuity.duplicate_slots.len();
     let anomalies = continuity.parent_anomalies.len();
+    let duplicate_extra: usize = continuity
+        .duplicate_slots
+        .values()
+        .map(|count| count.saturating_sub(1))
+        .sum();
+    let findings = missing
+        + duplicate_extra
