@@ -20,3 +20,10 @@ fn main() {
     if args.len() != 3 || args[1] != "analyze" {
         eprintln!("usage: slotdrift-engine analyze <export.jsonl>");
         process::exit(2);
+    }
+    let path = &args[2];
+    let text = match fs::read_to_string(path) {
+        Ok(text) => text,
+        Err(error) => {
+            eprintln!("slotdrift-engine: cannot read {}: {}", path, error);
+            process::exit(2);
