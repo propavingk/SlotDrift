@@ -5,3 +5,10 @@
 //!
 //! Exit codes: 0 clean, 1 findings, 2 usage or input error.
 
+use std::env;
+use std::fs;
+use std::process;
+
+use slotdrift_engine::{analyze_continuity, find_forks, parse_text};
+
+fn main() {
