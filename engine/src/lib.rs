@@ -439,3 +439,25 @@ pub fn find_forks(records: &[Record]) -> Forks {
         }
     }
     let mut best: BTreeMap<i64, &Record> = BTreeMap::new();
+    for (slot, group) in &by_slot {
+        let produced_group: Vec<&Record> = group.iter().copied().filter(|r| !r.skipped()).collect();
+        let chosen = if produced_group.is_empty() {
+            group[0]
+        } else {
+            best_record(&produced_group)
+        };
+        best.insert(*slot, chosen);
+    }
+    let mut tip = produced[0];
+    for candidate in produced.iter().skip(1) {
+        let better = candidate.commitment.rank() > tip.commitment.rank()
+            || (candidate.commitment.rank() == tip.commitment.rank()
+                && (candidate.slot > tip.slot
+                    || (candidate.slot == tip.slot
+                        && candidate.blockhash.clone().unwrap_or_default()
+                            < tip.blockhash.clone().unwrap_or_default())));
+        if better {
+            tip = candidate;
+        }
+    }
+    out.canonical_tip = Some(tip.slot);
