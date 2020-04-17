@@ -12,3 +12,11 @@ use std::process;
 use slotdrift_engine::{analyze_continuity, find_forks, parse_text};
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    if args.len() == 2 && args[1] == "--version" {
+        println!("slotdrift-engine 0.1.0");
+        return;
+    }
+    if args.len() != 3 || args[1] != "analyze" {
+        eprintln!("usage: slotdrift-engine analyze <export.jsonl>");
+        process::exit(2);
