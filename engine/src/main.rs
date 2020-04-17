@@ -27,3 +27,11 @@ fn main() {
         Err(error) => {
             eprintln!("slotdrift-engine: cannot read {}: {}", path, error);
             process::exit(2);
+        }
+    };
+    let (records, errors) = parse_text(&text);
+    let continuity = analyze_continuity(&records);
+    let forks = find_forks(&records);
+    let missing = continuity.missing.len();
+    let duplicates = continuity.duplicate_slots.len();
+    let anomalies = continuity.parent_anomalies.len();
