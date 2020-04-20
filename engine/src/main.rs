@@ -50,3 +50,10 @@ fn main() {
     let window = match (continuity.min_slot, continuity.max_slot) {
         (Some(min), Some(max)) => format!("{}..{}", min, max),
         _ => "empty".to_string(),
+    };
+    println!("records: {}", records.len());
+    println!("window: {}", window);
+    println!("parse_errors: {}", errors.len());
+    println!("missing: {}", missing);
+    println!("duplicates: {}", duplicates);
+    println!("parent_anomalies: {}", anomalies);
