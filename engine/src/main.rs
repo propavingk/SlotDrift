@@ -42,3 +42,11 @@ fn main() {
         .sum();
     let findings = missing
         + duplicate_extra
+        + anomalies
+        + forks.duplicate_slots.len()
+        + forks.orphan_count
+        + errors.len();
+
+    let window = match (continuity.min_slot, continuity.max_slot) {
+        (Some(min), Some(max)) => format!("{}..{}", min, max),
+        _ => "empty".to_string(),
