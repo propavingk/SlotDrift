@@ -26,3 +26,12 @@ fn clean_window_has_no_findings() {
 
 #[test]
 fn cluster_window_reports_the_designed_findings() {
+    let (records, errors) = slotdrift_engine::parse_text(&sample("cluster-window.jsonl"));
+    assert_eq!(records.len(), 64);
+    assert!(errors.is_empty());
+    let continuity = slotdrift_engine::analyze_continuity(&records);
+    assert_eq!(continuity.duplicate_slots.len(), 3);
+    assert_eq!(continuity.parent_anomalies.len(), 1);
+    assert_eq!(continuity.skipped.len(), 3);
+    let forks = slotdrift_engine::find_forks(&records);
+    assert_eq!(forks.duplicate_slots.len(), 3);
