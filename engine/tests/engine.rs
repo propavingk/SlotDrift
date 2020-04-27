@@ -35,3 +35,13 @@ fn cluster_window_reports_the_designed_findings() {
     assert_eq!(continuity.skipped.len(), 3);
     let forks = slotdrift_engine::find_forks(&records);
     assert_eq!(forks.duplicate_slots.len(), 3);
+    assert_eq!(forks.orphan_segments.len(), 2);
+    assert_eq!(forks.orphan_count, 5);
+    assert_eq!(forks.canonical_tip, Some(320_400_060));
+    let rival = &forks.orphan_segments[0];
+    assert_eq!(
+        (rival.start_slot, rival.end_slot, rival.length),
+        (320_400_040, 320_400_042, 3)
+    );
+    let reorg = &forks.orphan_segments[1];
+    assert_eq!(
