@@ -45,3 +45,12 @@ fn cluster_window_reports_the_designed_findings() {
     );
     let reorg = &forks.orphan_segments[1];
     assert_eq!(
+        (reorg.start_slot, reorg.end_slot, reorg.length),
+        (320_400_056, 320_400_057, 2)
+    );
+}
+
+#[test]
+fn broken_lines_are_collected_not_fatal() {
+    let (records, errors) = slotdrift_engine::parse_text(&sample("broken-lines.jsonl"));
+    assert_eq!(records.len(), 2);
