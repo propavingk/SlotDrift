@@ -54,3 +54,13 @@ fn cluster_window_reports_the_designed_findings() {
 fn broken_lines_are_collected_not_fatal() {
     let (records, errors) = slotdrift_engine::parse_text(&sample("broken-lines.jsonl"));
     assert_eq!(records.len(), 2);
+    assert_eq!(errors.len(), 7);
+}
+
+#[test]
+fn skipped_parent_is_an_anomaly() {
+    let text = concat!(
+        r#"{"slot":1,"parent":0,"commitment":"finalized"}"#,
+        "\n",
+        r#"{"slot":2,"commitment":"skipped"}"#,
+        "\n",
