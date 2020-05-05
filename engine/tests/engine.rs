@@ -64,3 +64,13 @@ fn skipped_parent_is_an_anomaly() {
         "\n",
         r#"{"slot":2,"commitment":"skipped"}"#,
         "\n",
+        r#"{"slot":3,"parent":2,"commitment":"finalized"}"#,
+        "\n"
+    );
+    let (records, _) = slotdrift_engine::parse_text(text);
+    let continuity = slotdrift_engine::analyze_continuity(&records);
+    assert_eq!(continuity.parent_anomalies.len(), 1);
+    assert_eq!(continuity.parent_anomalies[0].0, 3);
+}
+
+#[test]
