@@ -9,3 +9,9 @@ reproducible:
 python samples/build_fixture.py
 clean-window.jsonl: 30 records
 cluster-window.jsonl: 64 records
+```
+
+## clean-window.jsonl
+
+30 records, slots 100000000 to 100000029. All blocks are finalized, two slots
+(100000010 and 100000011) carry explicit skipped records, and the block at
