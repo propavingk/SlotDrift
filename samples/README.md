@@ -20,3 +20,9 @@ ancestor. The first block's parent sits just below the window, which is the
 normal boundary case for a captured window. Expected result: zero findings,
 exit code 0.
 
+## cluster-window.jsonl
+
+64 records, slots 320400000 to 320400060. Built to exercise every finding
+class in one window:
+
+- two explicit skips at 320400015 and 320400016, bridged by the block at
