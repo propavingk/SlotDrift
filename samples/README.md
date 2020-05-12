@@ -15,3 +15,8 @@ cluster-window.jsonl: 64 records
 
 30 records, slots 100000000 to 100000029. All blocks are finalized, two slots
 (100000010 and 100000011) carry explicit skipped records, and the block at
+100000012 reports parent 100000009 because a skipped slot is never an
+ancestor. The first block's parent sits just below the window, which is the
+normal boundary case for a captured window. Expected result: zero findings,
+exit code 0.
+
