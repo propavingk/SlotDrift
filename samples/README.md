@@ -26,3 +26,9 @@ exit code 0.
 class in one window:
 
 - two explicit skips at 320400015 and 320400016, bridged by the block at
+  320400017 whose parent is 320400014;
+- one more skip at 320400033;
+- a duplicated slot at 320400040 with two competing blockhashes. The rival
+  branch occupies slots 320400040 to 320400042 and is orphaned when the
+  finalized branch wins;
+- a later mini-reorg where blocks 320400056 and 320400057 are orphaned by the
