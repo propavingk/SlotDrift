@@ -32,3 +32,9 @@ class in one window:
   branch occupies slots 320400040 to 320400042 and is orphaned when the
   finalized branch wins;
 - a later mini-reorg where blocks 320400056 and 320400057 are orphaned by the
+  branch that continues from 320400055, and block 320400058 steps over both
+  without a skip record, which is a separate parent anomaly.
+
+Expected result: 3 duplicate slots, 2 orphan segments (3 slots and 2 slots),
+1 parent anomaly, 12 findings in total, exit code 1.
+
