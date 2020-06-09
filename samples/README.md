@@ -38,3 +38,8 @@ class in one window:
 Expected result: 3 duplicate slots, 2 orphan segments (3 slots and 2 slots),
 1 parent anomaly, 12 findings in total, exit code 1.
 
+## broken-lines.jsonl
+
+Nine lines, seven of them deliberately invalid, covering every validation
+rule: invalid JSON, missing commitment, unknown commitment, a skipped slot
+carrying a blockhash, a produced slot without a parent, a negative slot, and a
