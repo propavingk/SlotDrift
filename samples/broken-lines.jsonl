@@ -1,3 +1,4 @@
 {"slot":500000001,"parent":500000000,"commitment":"finalized","leader":"A1","blockhash":"Good01hashXXXXXXXX"}
 not json at all
 {"slot":500000003,"leader":"B2"}
+{"slot":500000004,"parent":500000003,"commitment":"maybe","leader":"C3"}
