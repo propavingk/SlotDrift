@@ -24,3 +24,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+LEADERS = [
+    "7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2",
+    "GdnSyH3YtwcxFvQrVVJMm1tr2ojebqjFEuiEcWm2mSx5",
+    "4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T",
+    "CvSb7Md3jUWLtR9jRUnL2t9RzZ9k6NQmE7u8vCqQv7fE",
+    "9xQeWvG816bUx9EPfCDsRkHr2D3y6dM4nA8bV5cL7pQt",
+    "3VfJ8kMzY2nQpR6tWsLxE1uHcD4yA9bG7eN5mK2qSvT",
+    "Fq6zXjB4nM8vC2rT5yH7kL9pQ1wE3sD6gA4uJ0oI8bNx",
+    "Hm4kP9sV2xC7zQ1nB5yR8tL3wE6uA2jD9gF4vK7oM1qS",
+]
+
