@@ -12,3 +12,15 @@ reader can inspect exactly how the data was produced:
   later mini-reorg that orphans two blocks, and one parent that steps over
   produced slots without a skip record.
 
+Run from the repository root:
+
+    python samples/build_fixture.py
+
+The script writes both files with LF endings and no trailing whitespace, and
+it is idempotent: running it twice produces identical bytes.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
