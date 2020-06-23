@@ -35,3 +35,14 @@ LEADERS = [
     "Hm4kP9sV2xC7zQ1nB5yR8tL3wE6uA2jD9gF4vK7oM1qS",
 ]
 
+
+def leaders_for(index: int) -> str:
+    return LEADERS[index % len(LEADERS)]
+
+
+def record(slot, parent, commitment, leader, blockhash=None, tx_count=None):
+    obj = {"slot": slot, "commitment": commitment, "leader": leader}
+    if parent is not None:
+        obj["parent"] = parent
+    if blockhash is not None:
+        obj["blockhash"] = blockhash
