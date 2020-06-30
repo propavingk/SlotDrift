@@ -46,3 +46,14 @@ def record(slot, parent, commitment, leader, blockhash=None, tx_count=None):
         obj["parent"] = parent
     if blockhash is not None:
         obj["blockhash"] = blockhash
+    if tx_count is not None:
+        obj["tx_count"] = tx_count
+    return obj
+
+
+def write_jsonl(path: Path, records: list[dict]) -> None:
+    lines = [json.dumps(obj, separators=(",", ":"), sort_keys=True) for obj in records]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+
+
+def build_clean() -> list[dict]:
