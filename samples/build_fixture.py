@@ -57,3 +57,14 @@ def write_jsonl(path: Path, records: list[dict]) -> None:
 
 
 def build_clean() -> list[dict]:
+    base = 100_000_000
+    records: list[dict] = []
+    last_produced: int | None = None
+    for offset in range(30):
+        slot = base + offset
+        if offset in (10, 11):
+            records.append(record(slot, None, "skipped", leaders_for(offset)))
+            continue
+        parent = base - 1 if last_produced is None else last_produced
+        records.append(
+            record(slot, parent, "finalized", leaders_for(offset),
