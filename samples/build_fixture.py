@@ -68,3 +68,14 @@ def build_clean() -> list[dict]:
         parent = base - 1 if last_produced is None else last_produced
         records.append(
             record(slot, parent, "finalized", leaders_for(offset),
+                   blockhash=f"Clean{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", tx_count=120 + offset)
+        )
+        last_produced = slot
+    return records
+
+
+def build_cluster() -> list[dict]:
+    base = 320_400_000
+    records: list[dict] = []
+
+    def produced(slot, parent, blockhash, commitment="finalized", tx_count=700):
