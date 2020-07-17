@@ -79,3 +79,14 @@ def build_cluster() -> list[dict]:
     records: list[dict] = []
 
     def produced(slot, parent, blockhash, commitment="finalized", tx_count=700):
+        records.append(record(slot, parent, commitment, leaders_for(slot - base),
+                              blockhash=blockhash, tx_count=tx_count))
+
+    def skipped(slot):
+        records.append(record(slot, None, "skipped", leaders_for(slot - base)))
+
+    # Streak one: blocks 0..14, then skips at 15 and 16.
+    produced(base + 0, base - 1, "StreakA00hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    for offset in range(1, 15):
+        produced(base + offset, base + offset - 1,
+                 f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
