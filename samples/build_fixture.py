@@ -90,3 +90,14 @@ def build_cluster() -> list[dict]:
     for offset in range(1, 15):
         produced(base + offset, base + offset - 1,
                  f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    skipped(base + 15)
+    skipped(base + 16)
+
+    # Block 17 bridges the two skipped slots and reports parent 14.
+    produced(base + 17, base + 14, "StreakA17hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    for offset in range(18, 33):
+        produced(base + offset, base + offset - 1,
+                 f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
+    # Skip at 33, block 34 bridges to parent 32.
+    skipped(base + 33)
