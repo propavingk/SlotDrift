@@ -101,3 +101,14 @@ def build_cluster() -> list[dict]:
 
     # Skip at 33, block 34 bridges to parent 32.
     skipped(base + 33)
+    produced(base + 34, base + 32, "StreakA34hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    for offset in range(35, 40):
+        produced(base + offset, base + offset - 1,
+                 f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
+    # Duplicate slot 40: a finalized block and a rival processed block.
+    produced(base + 40, base + 39, "ForkA40hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 40, base + 39, "ForkB40hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "processed")
+    # The rival branch continues for two slots and is orphaned.
+    produced(base + 41, base + 40, "ForkB41hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "processed",
+             tx_count=3)
