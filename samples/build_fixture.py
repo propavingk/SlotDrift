@@ -112,3 +112,14 @@ def build_cluster() -> list[dict]:
     # The rival branch continues for two slots and is orphaned.
     produced(base + 41, base + 40, "ForkB41hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "processed",
              tx_count=3)
+    produced(base + 42, base + 41, "ForkB42hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "processed",
+             tx_count=2)
+    # The finalized branch wins and continues.
+    produced(base + 41, base + 40, "ForkA41hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    for offset in range(42, 46):
+        produced(base + offset, base + offset - 1,
+                 f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
+    # Mini-reorg: 46..57 keep building, but 58 proves the cluster chose the
+    # 55 branch. Blocks 56 and 57 are orphaned, and 58 also steps over them
+    # without a skip record, which the analyzer flags separately.
