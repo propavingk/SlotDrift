@@ -12,3 +12,9 @@ assignees: ""
 
 **Reproduce**
 
+Command:
+
+```bash
+PYTHONPATH=src python -m slotdrift analyze path/to/export.jsonl
+```
+
