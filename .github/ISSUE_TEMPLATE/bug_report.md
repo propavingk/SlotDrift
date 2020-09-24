@@ -18,3 +18,8 @@ Command:
 PYTHONPATH=src python -m slotdrift analyze path/to/export.jsonl
 ```
 
+Smallest input that shows it (a few JSONL lines are usually enough):
+
+```jsonl
+
+```
