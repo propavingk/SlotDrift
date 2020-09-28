@@ -23,3 +23,9 @@ Smallest input that shows it (a few JSONL lines are usually enough):
 ```jsonl
 
 ```
+
+**Real output**
+
+Paste the output verbatim, including the `FINDINGS:` line:
+
+```
