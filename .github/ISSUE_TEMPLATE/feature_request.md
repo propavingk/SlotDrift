@@ -14,3 +14,6 @@ decide Y" is more useful than a field name.
 **Proposed behavior**
 
 **Does it change the rules or the contract**
+
+- [ ] New report field only (additive, no rule change)
+- [ ] Changes an existing rule (requires both engines and parity)
