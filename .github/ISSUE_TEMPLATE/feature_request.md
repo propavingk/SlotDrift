@@ -10,3 +10,7 @@ assignees: ""
 
 Describe the situation where you would use it. "I want to know X so I can
 decide Y" is more useful than a field name.
+
+**Proposed behavior**
+
+**Does it change the rules or the contract**
