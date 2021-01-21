@@ -7,3 +7,6 @@ assignees: ""
 ---
 
 **What decision would this feature inform**
+
+Describe the situation where you would use it. "I want to know X so I can
+decide Y" is more useful than a field name.
