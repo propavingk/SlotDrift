@@ -25,3 +25,15 @@ fields. Strings are required to be strings: `"slot": "5"` is invalid, and so
 is an empty `leader` or `blockhash`.
 
 A produced block (any commitment except `skipped`) must carry a parent. A
+skipped slot must not carry a blockhash, because no block exists for it.
+
+### Validation errors
+
+Every invalid line is collected with its line number and reported under
+`PARSE ERRORS`. Parsing continues. The observed error messages are:
+
+| Condition | Message |
+|---|---|
+| not a JSON object or a JSON syntax error | `line N: invalid JSON (...)` or `line N: record must be a JSON object` |
+| missing `slot` | `line N: missing required field 'slot'` |
+| negative or non-integer `slot` | `line N: field 'slot' must be an integer` / `must be >= 0` |
