@@ -13,3 +13,15 @@ as a JSON object. The fields:
 
 | Field | Type | Required | Rules |
 |---|---|---|---|
+| `slot` | integer | yes | `>= 0` |
+| `parent` | integer or null | for produced slots | `>= 0`; required when `commitment` is not `skipped` |
+| `commitment` | string | yes | one of `processed`, `confirmed`, `finalized`, `skipped` |
+| `leader` | string or null | no | non-empty when present |
+| `blockhash` | string or null | no | non-empty when present; forbidden on a `skipped` record |
+| `tx_count` | integer or null | no | `>= 0` |
+
+Unknown keys are ignored. A `null` value is treated as absent for the optional
+fields. Strings are required to be strings: `"slot": "5"` is invalid, and so
+is an empty `leader` or `blockhash`.
+
+A produced block (any commitment except `skipped`) must carry a parent. A
