@@ -37,3 +37,15 @@ Every invalid line is collected with its line number and reported under
 | not a JSON object or a JSON syntax error | `line N: invalid JSON (...)` or `line N: record must be a JSON object` |
 | missing `slot` | `line N: missing required field 'slot'` |
 | negative or non-integer `slot` | `line N: field 'slot' must be an integer` / `must be >= 0` |
+| missing `commitment` | `line N: missing required field 'commitment'` |
+| unknown `commitment` | `line N: commitment must be one of skipped, processed, confirmed, finalized` |
+| produced record without a parent | `line N: a produced slot must carry a parent` |
+| skipped record with a blockhash | `line N: a skipped slot cannot carry a blockhash` |
+| negative `tx_count` | `line N: field 'tx_count' must be >= 0` |
+
+## Deterministic rules
+
+These rules are implemented twice, once per language, and the parity script
+asserts that both implementations agree on every fixture.
+
+### Window
