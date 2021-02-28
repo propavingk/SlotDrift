@@ -61,3 +61,15 @@ counts duplicate records; the fork section counts duplicate slots that show
 more than one distinct blockhash.
 
 ### Parent anomalies
+
+A produced block is anomalous when:
+
+- its parent is absent from the export and the parent is inside the window;
+- its parent is not earlier than the block itself;
+- its parent slot is marked skipped;
+- its parent is below the previous slot and the slots in between are not all
+  marked skipped (a step over produced slots).
+
+A parent below the window is not an anomaly: a window always starts mid chain.
+
+### Canonical chain
