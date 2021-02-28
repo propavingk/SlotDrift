@@ -49,3 +49,15 @@ These rules are implemented twice, once per language, and the parity script
 asserts that both implementations agree on every fixture.
 
 ### Window
+
+`min_slot` and `max_slot` are the smallest and largest slot numbers present,
+counting skipped records. Every slot number in between with no record is a
+`missing` slot.
+
+### Duplicate slots
+
+A slot number with more than one record is a duplicate. The continuity section
+counts duplicate records; the fork section counts duplicate slots that show
+more than one distinct blockhash.
+
+### Parent anomalies
