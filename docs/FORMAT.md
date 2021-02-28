@@ -73,3 +73,15 @@ A produced block is anomalous when:
 A parent below the window is not an anomaly: a window always starts mid chain.
 
 ### Canonical chain
+
+1. The tip is the produced record with the strongest commitment. Ties break to
+   the highest slot, then to the lexicographically smallest blockhash.
+2. From the tip, walk parent links through the best record per slot, where
+   "best" uses the same ordering.
+3. The walk ends at a slot with no parent in the export.
+
+### Orphaned blocks and segments
+
+A produced block is orphaned when its identity `(slot, blockhash)` is not on
+the canonical walk. Identity, not slot number: a block that loses a duplicate
+slot is orphaned even though the slot number itself is canonical.
