@@ -85,3 +85,14 @@ A parent below the window is not an anomaly: a window always starts mid chain.
 A produced block is orphaned when its identity `(slot, blockhash)` is not on
 the canonical walk. Identity, not slot number: a block that loses a duplicate
 slot is orphaned even though the slot number itself is canonical.
+
+Orphaned blocks are grouped into segments by following parent links inside the
+orphaned set. A segment reports its first and last slot, its length, its
+attachment point (`root_parent`), and how many of its blocks were `processed`
+or `finalized`.
+
+### Leader statistics
+
+For each `leader` value: `scheduled` counts every record, `skipped` counts
+the skipped ones, `produced` the rest, and `skip_rate = skipped / scheduled`
+as a fraction. Records without a leader field are not attributed.
