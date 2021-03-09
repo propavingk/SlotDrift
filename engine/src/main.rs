@@ -57,3 +57,16 @@ fn main() {
     println!("missing: {}", missing);
     println!("duplicates: {}", duplicates);
     println!("parent_anomalies: {}", anomalies);
+    println!("skipped: {}", continuity.skipped.len());
+    println!("duplicate_slots: {}", forks.duplicate_slots.len());
+    println!("orphan_segments: {}", forks.orphan_segments.len());
+    println!("orphan_count: {}", forks.orphan_count);
+    match forks.canonical_tip {
+        Some(tip) => println!("canonical_tip: {}", tip),
+        None => println!("canonical_tip: none"),
+    }
+    println!("findings: {}", findings);
+
+    if findings > 0 {
+        process::exit(1);
+    }
