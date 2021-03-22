@@ -96,3 +96,15 @@ or `finalized`.
 For each `leader` value: `scheduled` counts every record, `skipped` counts
 the skipped ones, `produced` the rest, and `skip_rate = skipped / scheduled`
 as a fraction. Records without a leader field are not attributed.
+
+## Text report
+
+The `analyze` command prints, in order:
+
+| Section | Content |
+|---|---|
+| header | tool name, input path, records, window, parse error count |
+| `CONTINUITY` | counts for missing, duplicate, parent anomaly and skipped slots |
+| `GAPS` | the first N missing slot numbers, then `... N more` |
+| `PARENT ANOMALIES` | the first N as `slot S parent P: reason` |
+| `FORKS` | duplicate slots, then orphan segments with attachment and mix |
