@@ -108,3 +108,15 @@ The `analyze` command prints, in order:
 | `GAPS` | the first N missing slot numbers, then `... N more` |
 | `PARENT ANOMALIES` | the first N as `slot S parent P: reason` |
 | `FORKS` | duplicate slots, then orphan segments with attachment and mix |
+| `LEADERS` | top five by skip rate, `skipped x/y (p.p%)` |
+| `PARSE ERRORS` | the first N error messages verbatim |
+| `FINDINGS` | the total count used for the exit code |
+
+N defaults to 10 and is set by `--limit`. Lists are never silently truncated:
+a cut list always prints how many entries were omitted.
+
+## JSON report
+
+`analyze --format json` prints one object. Field by field:
+
+| Field | Type | Meaning |
