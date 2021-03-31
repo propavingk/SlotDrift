@@ -10,3 +10,12 @@
       from { width: 0; }
       to { width: 400; }
     }
+  </style>
+  <defs>
+    <clipPath id="sd-type-clip"><rect id="sd-type-rect" x="128" y="118" width="400" height="16"/></clipPath>
+  </defs>
+  <rect width="640" height="176" fill="#F7F3EC"/>
+
+  <g font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600">
+    <text x="16" y="60" fill="#33302B">slot</text>
+    <text x="75" y="60" fill="#9C3D12">drift</text>
