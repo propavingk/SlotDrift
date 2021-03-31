@@ -120,3 +120,15 @@ a cut list always prints how many entries were omitted.
 `analyze --format json` prints one object. Field by field:
 
 | Field | Type | Meaning |
+|---|---|---|
+| `input` | string | the path as given on the command line |
+| `records` | int | accepted records |
+| `window` | object | `min`, `max`, `size` (null when the export is empty) |
+| `findings` | int | same total as the text report |
+| `continuity.missing` | array of int | missing slot numbers |
+| `continuity.duplicates` | object | slot number (string key) to record count |
+| `continuity.parent_anomalies` | array | objects with `slot`, `parent`, `reason` |
+| `continuity.skipped` | array of int | skipped slot numbers |
+| `forks.canonical_tip` | int or null | the tip slot |
+| `forks.canonical_length` | int | distinct canonical slots |
+| `forks.duplicate_slots` | object | slot number (string key) to sorted blockhashes |
