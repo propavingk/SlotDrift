@@ -19,3 +19,12 @@
   <g font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600">
     <text x="16" y="60" fill="#33302B">slot</text>
     <text x="75" y="60" fill="#9C3D12">drift</text>
+  </g>
+  <text x="16" y="80" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5E6B5A">continuity, forks, findings</text>
+
+  <text x="128" y="32" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#33302B">61 slots, 64 records</text>
+
+  <g stroke="#33302B" stroke-width="1">
+    <g fill="#F7F3EC">
+      <rect x="128" y="48" width="6" height="24"/>
+      <rect x="136" y="48" width="6" height="24"/>
