@@ -82,3 +82,12 @@
       <rect x="560" y="48" width="6" height="24"/>
       <rect x="568" y="48" width="6" height="24"/>
       <rect x="576" y="48" width="6" height="24"/>
+      <rect x="584" y="48" width="6" height="24"/>
+    </g>
+    <g fill="#DED8CD">
+      <rect x="248" y="48" width="6" height="24"/>
+      <rect x="256" y="48" width="6" height="24"/>
+      <rect x="392" y="48" width="6" height="24"/>
+    </g>
+    <g fill="#5E6B5A">
+      <rect x="448" y="48" width="6" height="24"/>
