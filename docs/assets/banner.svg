@@ -91,3 +91,12 @@
     </g>
     <g fill="#5E6B5A">
       <rect x="448" y="48" width="6" height="24"/>
+      <rect x="456" y="48" width="6" height="24"/>
+      <rect x="464" y="48" width="6" height="24"/>
+      <rect x="576" y="48" width="6" height="24"/>
+      <rect x="584" y="48" width="6" height="24"/>
+    </g>
+  </g>
+  <rect x="128" y="48" width="470" height="24" fill="none" stroke="#33302B" stroke-width="1.5"/>
+  <g stroke="#9C3D12" stroke-width="2" fill="none">
+    <path d="M448 76 L448 82 L470 82"/>
