@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="176" viewBox="0 0 592 176" role="img" aria-labelledby="sd-cont-title sd-cont-desc">
+  <!-- palette: warm paper and ink, one moss secondary and one rust accent placed on the single thing to look at first, the duplicated-slot bracket. contrast against #F7F3EC: ink #33302B 11.5:1, moss #5E6B5A 5.1:1, rust #9C3D12 6.1:1. Every number comes from running the CLI on samples/cluster-window.jsonl. -->
+  <title id="sd-cont-title">Continuity of the 61 slot cluster window</title>
+  <desc id="sd-cont-desc">One cell per slot in the sample window. Finalized produced slots are paper, skipped slots are pale, slots whose rival block was orphaned are moss, and a rust bracket marks the three duplicated slots at 40 to 42. The window report counted 64 records and 12 findings.</desc>
+  <rect width="592" height="176" fill="#F7F3EC"/>
+  <text x="16" y="24" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#33302B">slotdrift: 61-slot window, 64 records, 12 findings</text>
+
+  <g stroke="#33302B" stroke-width="1">
+    <g fill="#F7F3EC">
+      <rect x="16" y="56" width="6" height="24"/>
