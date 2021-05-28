@@ -80,3 +80,12 @@
   </g>
   <rect x="16" y="56" width="470" height="24" fill="none" stroke="#33302B" stroke-width="1.5"/>
 
+  <g stroke="#9C3D12" stroke-width="2" fill="none">
+    <path d="M336 84 L336 90 L358 90"/>
+  </g>
+
+  <g font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#33302B">
+    <text x="16" y="124">rust bracket: duplicated slots. moss: orphaned blocks. pale: skipped.</text>
+  </g>
+
+  <g font-family='"Cascadia Mono", "JetBrains Mono", Consolas, monospace' font-size="11" fill="#5E6B5A">
