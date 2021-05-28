@@ -62,3 +62,12 @@
       <rect x="448" y="56" width="6" height="24"/>
       <rect x="456" y="56" width="6" height="24"/>
       <rect x="464" y="56" width="6" height="24"/>
+      <rect x="472" y="56" width="6" height="24"/>
+      <rect x="480" y="56" width="6" height="24"/>
+    </g>
+    <g fill="#DED8CD">
+      <rect x="136" y="56" width="6" height="24"/>
+      <rect x="144" y="56" width="6" height="24"/>
+      <rect x="280" y="56" width="6" height="24"/>
+    </g>
+    <g fill="#5E6B5A">
