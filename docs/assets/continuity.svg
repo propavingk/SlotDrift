@@ -71,3 +71,12 @@
       <rect x="280" y="56" width="6" height="24"/>
     </g>
     <g fill="#5E6B5A">
+      <rect x="336" y="56" width="6" height="24"/>
+      <rect x="344" y="56" width="6" height="24"/>
+      <rect x="352" y="56" width="6" height="24"/>
+      <rect x="464" y="56" width="6" height="24"/>
+      <rect x="472" y="56" width="6" height="24"/>
+    </g>
+  </g>
+  <rect x="16" y="56" width="470" height="24" fill="none" stroke="#33302B" stroke-width="1.5"/>
+
