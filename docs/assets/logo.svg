@@ -2,3 +2,4 @@
   <!-- palette: warm paper and ink from the ledger subject; one accent, rust, placed on the drift morpheme because drift is the thing the tool detects. contrast against #F7F3EC: ink #33302B 11.5:1, moss #5E6B5A 5.1:1, rust #9C3D12 6.1:1. -->
   <title id="sd-logo-title">slotdrift wordmark</title>
   <desc id="sd-logo-desc">The name slotdrift set in a single weight, split at the compound boundary: slot in ink, drift in rust, with a small tagline underneath in moss.</desc>
+  <rect width="320" height="96" fill="#F7F3EC"/>
