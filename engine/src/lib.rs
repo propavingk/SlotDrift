@@ -461,3 +461,68 @@ pub fn find_forks(records: &[Record]) -> Forks {
         }
     }
     out.canonical_tip = Some(tip.slot);
+
+    let identity = |r: &Record| (r.slot, r.blockhash.clone().unwrap_or_default());
+    let mut canon: HashSet<(i64, String)> = HashSet::new();
+    let mut current: Option<&Record> = Some(tip);
+    while let Some(record) = current {
+        let key = identity(record);
+        if canon.contains(&key) {
+            break;
+        }
+        canon.insert(key);
+        current = match record.parent {
+            None => None,
+            Some(parent) => best.get(&parent).copied(),
+        };
+    }
+
+    let mut orphans: BTreeMap<i64, &Record> = BTreeMap::new();
+    for record in &produced {
+        if !canon.contains(&identity(record)) {
+            orphans.entry(record.slot).or_insert(record);
+        }
+    }
+    out.orphan_count = orphans.len();
+
+    let mut remaining = orphans.clone();
+    while let Some((_, seed)) = remaining.iter().next_back().map(|(k, v)| (*k, *v)) {
+        remaining.remove(&seed.slot);
+        let mut segment = vec![seed];
+        let mut parent = seed.parent;
+        while let Some(p) = parent {
+            if let Some(next) = remaining.remove(&p) {
+                segment.push(next);
+                parent = next.parent;
+            } else {
+                break;
+            }
+        }
+        segment.sort_by_key(|r| r.slot);
+        let processed = segment
+            .iter()
+            .filter(|r| r.commitment == Commitment::Processed)
+            .count();
+        let finalized = segment
+            .iter()
+            .filter(|r| r.commitment == Commitment::Finalized)
+            .count();
+        out.orphan_segments.push(OrphanSegment {
+            start_slot: segment.first().unwrap().slot,
+            end_slot: segment.last().unwrap().slot,
+            length: segment.len(),
+            root_parent: segment.first().unwrap().parent,
+            processed,
+            finalized,
+        });
+    }
+    out.orphan_segments.sort_by_key(|s| s.start_slot);
+    out
+}
+
+pub fn skip_rate(stats: &LeaderStats) -> f64 {
+    if stats.scheduled == 0 {
+        0.0
+    } else {
+        stats.skipped as f64 / stats.scheduled as f64
+    }
