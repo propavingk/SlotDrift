@@ -598,4 +598,4 @@ and the banner reads the same. The wordmark asset stays static.
 
 MIT. See [LICENSE](LICENSE).
 
-<!-- draft note 860 -->
+<!-- draft note 861 -->
