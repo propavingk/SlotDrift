@@ -123,3 +123,26 @@ def build_cluster() -> list[dict]:
     # Mini-reorg: 46..57 keep building, but 58 proves the cluster chose the
     # 55 branch. Blocks 56 and 57 are orphaned, and 58 also steps over them
     # without a skip record, which the analyzer flags separately.
+    for offset in range(46, 56):
+        produced(base + offset, base + offset - 1,
+                 f"StreakA{offset:02d}hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 56, base + 55, "StreakA56hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 57, base + 56, "StreakA57hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 58, base + 55, "StreakA58hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 59, base + 58, "StreakA59hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    produced(base + 60, base + 59, "StreakA60hashXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    return records
+
+
+def main() -> int:
+    here = Path(__file__).resolve().parent
+    clean = build_clean()
+    cluster = build_cluster()
+    write_jsonl(here / "clean-window.jsonl", clean)
+    write_jsonl(here / "cluster-window.jsonl", cluster)
+    print(f"clean-window.jsonl: {len(clean)} records")
+    print(f"cluster-window.jsonl: {len(cluster)} records")
+    return 0
+
+
+if __name__ == "__main__":
