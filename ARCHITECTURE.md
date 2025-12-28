@@ -143,3 +143,24 @@ forks.find_forks (same records)  ->  ForkReport
 
 - Parsing is separate from analysis so validation errors are data. A file with
   seven bad lines still produces a useful report about the other records.
+- Continuity and forks are separate because they fail independently. A window
+  can be complete with no gaps and still contain a fork, and it can have
+  missing records with a perfectly linear chain.
+- Rendering is separate from computation because determinism is a rendering
+  contract. The same `Analysis` can be printed as text or JSON, and neither
+  path can change the numbers.
+- The CLI is thin because exit codes are policy. Policy in one function is
+  easier to keep stable than policy scattered through analysis code.
+- The Rust engine is a separate program because the point of a second
+  implementation is independence. Sharing code would defeat it.
+
+## Known limitations
+
+- No streaming: the whole export is held in memory, and the window loop walks
+  every slot between min and max, so a sparse ten-million-slot window costs
+  proportionally.
+- Canonical selection is a heuristic, not consensus. It is deterministic and
+  documented, which is what a report needs, but it is not a substitute for
+  reading the cluster's own fork choice.
+- The leader attribution uses whatever leader field the export carries. The
+  tool does not compute a schedule.
