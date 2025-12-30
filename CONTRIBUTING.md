@@ -88,3 +88,17 @@ test: cover boundary parents below the window
 
 ## Reviewing your own diff
 
+Before asking for review, read your diff once as if it were someone else's:
+
+- Does the change alter behavior that tests do not cover?
+- Did you touch the rules? Then both engines and parity moved together.
+- Did you touch an asset? Then `python scripts/verify.py` exits 0 and the XML
+  still parses.
+- Did you add a number to a document? Where did it come from?
+
+## Reporting bugs
+
+Open an issue with the exact command you ran, the smallest input that shows
+the problem, and the real output. If the input contains anything sensitive,
+reduce it to a synthetic record first; the format is small enough that a five
+line example usually reproduces a report bug.
