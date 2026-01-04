@@ -1,3 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: Format contract
+    url: https://example.invalid/slotdrift/docs/FORMAT.md
+    about: Input fields, validation rules, report fields and exit codes
+
+// draft note 1462
