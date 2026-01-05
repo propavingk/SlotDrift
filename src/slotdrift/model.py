@@ -101,3 +101,23 @@ def parse_record(obj: object, line: int) -> SlotRecord:
 def parse_text(text: str) -> tuple[list[SlotRecord], list[tuple[int, str]]]:
     """Parse JSONL text into (records, errors). Blank lines are ignored."""
     records: list[SlotRecord] = []
+    errors: list[tuple[int, str]] = []
+    for number, raw in enumerate(text.splitlines(), start=1):
+        if not raw.strip():
+            continue
+        try:
+            obj = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            errors.append((number, f"line {number}: invalid JSON ({exc.msg})"))
+            continue
+        try:
+            records.append(parse_record(obj, number))
+        except FormatError as exc:
+            errors.append((number, str(exc)))
+    return records, errors
+
+
+def parse_file(path: Path) -> tuple[list[SlotRecord], list[tuple[int, str]]]:
+    return parse_text(path.read_text(encoding="utf-8"))
+
+// draft note 1463
