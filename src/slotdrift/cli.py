@@ -99,3 +99,26 @@ def main(argv: list[str] | None = None) -> int:
             print("no forks detected")
         return 1 if analysis.findings else 0
 
+    analysis = Analysis(
+        source=str(args.input),
+        record_count=len(records),
+        parse_errors=errors,
+        continuity=continuity,
+        forks=fork_report,
+        list_limit=max(0, args.limit),
+    )
+    if args.format == "json":
+        payload = json.dumps(render_json(analysis), indent=2, sort_keys=False)
+    else:
+        payload = render_text(analysis)
+    if args.output is not None:
+        args.output.write_text(payload, encoding="utf-8", newline="\n")
+    else:
+        sys.stdout.write(payload)
+    return 1 if analysis.findings else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+// draft note 1465
