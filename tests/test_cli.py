@@ -68,3 +68,21 @@ class FormatTests(unittest.TestCase):
         )
         self.assertEqual(code, 1)
         self.assertIn("... 2 more duplicate slots", output)
+
+    def test_leaders_command_lines(self):
+        code, output = run(["leaders", str(SAMPLES / "clean-window.jsonl")])
+        self.assertEqual(code, 0)
+        lines = [line for line in output.splitlines() if line.strip()]
+        self.assertTrue(any("skipped 1/4 (25.0%)" in line for line in lines))
+
+    def test_forks_command_reports_segments(self):
+        code, output = run(["forks", str(SAMPLES / "cluster-window.jsonl")])
+        self.assertEqual(code, 1)
+        self.assertIn("duplicate slot 320400040: 2 blockhashes", output)
+        self.assertIn("orphan segment 320400056..320400057", output)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+// draft note 1464
