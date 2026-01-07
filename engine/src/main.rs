@@ -70,3 +70,6 @@ fn main() {
     if findings > 0 {
         process::exit(1);
     }
+}
+
+// draft note 1469
