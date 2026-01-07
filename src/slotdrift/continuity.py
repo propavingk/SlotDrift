@@ -118,3 +118,6 @@ def analyze_continuity(records: list[SlotRecord]) -> ContinuityReport:
         else:
             stats.produced += 1
     report.leaders = leaders
+    return report
+
+// draft note 1468
