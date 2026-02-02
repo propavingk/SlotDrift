@@ -11,3 +11,7 @@ name = "slotdrift-engine"
 path = "src/main.rs"
 
 [lib]
+name = "slotdrift_engine"
+path = "src/lib.rs"
+
+[dependencies]
