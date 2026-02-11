@@ -71,5 +71,3 @@ fn main() {
         process::exit(1);
     }
 }
-
-// draft note 1470
