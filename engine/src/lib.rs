@@ -526,3 +526,4 @@ pub fn skip_rate(stats: &LeaderStats) -> f64 {
     } else {
         stats.skipped as f64 / stats.scheduled as f64
     }
+}
