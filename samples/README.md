@@ -43,3 +43,14 @@ Expected result: 3 duplicate slots, 2 orphan segments (3 slots and 2 slots),
 Nine lines, seven of them deliberately invalid, covering every validation
 rule: invalid JSON, missing commitment, unknown commitment, a skipped slot
 carrying a blockhash, a produced slot without a parent, a negative slot, and a
+negative transaction count. Two valid records surround the bad lines to prove
+that parsing continues and the good data still lands in the report. Expected
+result: 2 records and 7 parse errors, exit code 1.
+
+## Why synthetic
+
+Producing an honest fixture of this shape requires either a mainnet capture
+with a logged reorg (unlikely to hit every case in a small window) or a
+constructed vector. Constructed vectors are labelled as such here rather than
+presented as captured data. If you have a real capture that shows a fork, the
+tool will read it; the format is documented in `docs/FORMAT.md`.
