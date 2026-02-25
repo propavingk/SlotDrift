@@ -5,3 +5,5 @@ not json at all
 {"slot":500000005,"commitment":"skipped","leader":"D4","blockhash":"Bad05hashXXXXXXXX"}
 {"slot":500000006,"commitment":"finalized","leader":"E5"}
 {"slot":-1,"parent":0,"commitment":"finalized","leader":"F6"}
+{"slot":500000008,"parent":500000000,"commitment":"finalized","leader":"G7","tx_count":-5}
+{"slot":500000009,"parent":500000000,"commitment":"confirmed","leader":"H8"}
