@@ -74,3 +74,20 @@ fn skipped_parent_is_an_anomaly() {
 }
 
 #[test]
+fn step_over_produced_slots_is_an_anomaly() {
+    let text = concat!(
+        r#"{"slot":1,"parent":0,"commitment":"finalized"}"#,
+        "\n",
+        r#"{"slot":2,"parent":1,"commitment":"finalized"}"#,
+        "\n",
+        r#"{"slot":3,"parent":1,"commitment":"finalized"}"#,
+        "\n"
+    );
+    let (records, _) = slotdrift_engine::parse_text(text);
+    let continuity = slotdrift_engine::analyze_continuity(&records);
+    assert_eq!(continuity.parent_anomalies.len(), 1);
+    assert_eq!(
+        continuity.parent_anomalies[0].2,
+        "step over slots not marked skipped"
+    );
+}
