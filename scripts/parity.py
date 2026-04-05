@@ -92,3 +92,25 @@ def main() -> int:
     failures = 0
     for name in FIXTURES:
         fixture = ROOT / "samples" / name
+        py = python_numbers(fixture)
+        rs = rust_numbers(fixture)
+        # orphan_count is derived the same way on both sides; normalise to int.
+        py["orphan_count"] = py["orphan_count"] or 0
+        disagreements = []
+        for key in KEYS:
+            py_value = py[key]
+            rs_value = rs.get(key)
+            if isinstance(rs_value, str) and rs_value.isdigit():
+                rs_value = int(rs_value)
+            if py_value != rs_value:
+                disagreements.append(f"{key}: python={py_value} rust={rs_value}")
+        status = "OK" if not disagreements else "DIFF " + "; ".join(disagreements)
+        if disagreements:
+            failures += 1
+        print(f"{name}: {status}")
+    print(f"parity: {len(FIXTURES) - failures}/{len(FIXTURES)} fixtures agree")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
