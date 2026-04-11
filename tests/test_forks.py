@@ -77,3 +77,20 @@ class IdentityTests(unittest.TestCase):
         self.assertEqual(report.duplicate_slots, {})
         self.assertEqual(report.orphan_segments, [])
         self.assertEqual(report.orphan_count, 0)
+
+    def test_skipped_slots_do_not_count_as_forks(self):
+        text = "\n".join(
+            [
+                '{"slot": 1, "parent": 0, "commitment": "finalized", "blockhash": "A"}',
+                '{"slot": 2, "commitment": "skipped"}',
+                '{"slot": 3, "parent": 1, "commitment": "finalized", "blockhash": "B"}',
+            ]
+        )
+        records, _ = parse_text(text)
+        report = find_forks(records)
+        self.assertEqual(report.duplicate_slots, {})
+        self.assertEqual(report.orphan_count, 0)
+
+
+if __name__ == "__main__":
+    unittest.main()
