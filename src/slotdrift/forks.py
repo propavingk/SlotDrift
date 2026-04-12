@@ -112,3 +112,4 @@ def find_forks(records: list[SlotRecord]) -> ForkReport:
             )
         )
     report.orphan_segments.sort(key=lambda s: s.start_slot)
+    return report
