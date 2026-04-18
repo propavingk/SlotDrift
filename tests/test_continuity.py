@@ -103,3 +103,25 @@ class InMemoryTests(unittest.TestCase):
     def test_leader_stats_and_skip_rate(self):
         text = "\n".join(
             [
+                '{"slot": 1, "parent": 0, "commitment": "finalized", "leader": "A"}',
+                '{"slot": 2, "commitment": "skipped", "leader": "A"}',
+                '{"slot": 3, "parent": 1, "commitment": "finalized", "leader": "B"}',
+            ]
+        )
+        records, _ = parse_text(text)
+        report = analyze_continuity(records)
+        self.assertEqual(report.leaders["A"].scheduled, 2)
+        self.assertEqual(report.leaders["A"].skipped, 1)
+        self.assertEqual(report.leaders["A"].produced, 1)
+        self.assertAlmostEqual(report.leaders["A"].skip_rate, 0.5)
+        self.assertAlmostEqual(report.leaders["B"].skip_rate, 0.0)
+
+    def test_empty_export(self):
+        report = analyze_continuity([])
+        self.assertEqual(report.record_count, 0)
+        self.assertIsNone(report.min_slot)
+        self.assertEqual(report.findings, 0)
+
+
+if __name__ == "__main__":
+    unittest.main()
