@@ -172,3 +172,35 @@ def check_svg_label_overlap() -> tuple[bool, str]:
                         f"{path.name}: '{previous[3]}' overlaps '{current[3]}' at y={baseline}"
                     )
     if bad:
+        return False, "svg labels: " + "; ".join(bad)
+    return True, "svg labels: no overlapping labels on shared baselines"
+
+
+CHECKS = [
+    ("svg parse", check_svg_parse),
+    ("svg filters", check_svg_filters),
+    ("svg comments", check_svg_comments),
+    ("em dash", check_em_dash),
+    ("readme attributes", check_readme_attr_blocks),
+    ("readme terms", check_readme_terms),
+    ("svg metadata", check_svg_metadata),
+    ("svg labels", check_svg_label_overlap),
+]
+
+
+def main() -> int:
+    failures = 0
+    for name, check in CHECKS:
+        try:
+            ok, message = check()
+        except Exception as exc:  # noqa: BLE001
+            ok, message = False, f"{name}: crashed with {exc!r}"
+        print(f"[{'pass' if ok else 'FAIL'}] {message}")
+        if not ok:
+            failures += 1
+    print(f"verify: {len(CHECKS)} checks, {failures} failures")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
