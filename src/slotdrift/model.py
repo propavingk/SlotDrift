@@ -119,5 +119,3 @@ def parse_text(text: str) -> tuple[list[SlotRecord], list[tuple[int, str]]]:
 
 def parse_file(path: Path) -> tuple[list[SlotRecord], list[tuple[int, str]]]:
     return parse_text(path.read_text(encoding="utf-8"))
-
-// draft note 1463
