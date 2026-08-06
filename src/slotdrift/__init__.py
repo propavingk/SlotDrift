@@ -6,5 +6,3 @@ slots, duplicate-slot forks, orphaned branches and per-leader skip rates.
 """
 
 __version__ = "0.1.0"
-
-// draft note 1466
