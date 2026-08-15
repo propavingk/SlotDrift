@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: slotdrift
+message: If you use this software, please cite it as below.
+type: software
+authors:
+  - name: the slotdrift authors
+abstract: Slot continuity and fork analysis for captured Solana slot records. Reads an export of slot records, validates it, and reports gaps, skips, duplicate slots and orphaned branches.
+license: MIT
+version: 0.1.0
+date-released: 2026-09-24
+keywords:
+  - solana
+  - slots
+  - forks
+  - continuity
+  - cli
