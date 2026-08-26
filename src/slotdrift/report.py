@@ -122,3 +122,28 @@ def render_json(analysis: Analysis) -> dict:
             "skipped": c.skipped,
         },
         "forks": {
+            "canonical_tip": f.canonical_tip,
+            "canonical_length": f.canonical_length,
+            "duplicate_slots": {str(k): v for k, v in sorted(f.duplicate_slots.items())},
+            "orphan_segments": [
+                {
+                    "start_slot": s.start_slot,
+                    "end_slot": s.end_slot,
+                    "length": s.length,
+                    "root_parent": s.root_parent,
+                    "commitments": s.commitments,
+                }
+                for s in f.orphan_segments
+            ],
+        },
+        "leaders": {
+            name: {
+                "scheduled": s.scheduled,
+                "skipped": s.skipped,
+                "produced": s.produced,
+                "skip_rate": round(s.skip_rate, 4),
+            }
+            for name, s in sorted(c.leaders.items())
+        },
+        "parse_errors": [{"line": n, "message": m} for n, m in analysis.parse_errors],
+    }
