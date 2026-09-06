@@ -132,3 +132,28 @@ a cut list always prints how many entries were omitted.
 | `forks.canonical_tip` | int or null | the tip slot |
 | `forks.canonical_length` | int | distinct canonical slots |
 | `forks.duplicate_slots` | object | slot number (string key) to sorted blockhashes |
+| `forks.orphan_segments` | array | objects with `start_slot`, `end_slot`, `length`, `root_parent`, `commitments` |
+| `leaders` | object | leader name to `scheduled`, `skipped`, `produced`, `skip_rate` |
+| `parse_errors` | array | objects with `line` and `message` |
+
+Adding keys is a minor change. Renaming or removing a key needs a changelog
+entry, because consumers diff this output in CI.
+
+## Exit codes
+
+| Code | Meaning |
+|---|---|
+| 0 | no findings: no missing slots, no parent anomalies, no duplicates, no orphans, no parse errors |
+| 1 | findings present |
+| 2 | usage error: missing or unreadable input file |
+
+Skipped slots are not findings. A cluster that skips a slot is behaving
+normally, and a report that treated every skip as a problem would be noise.
+
+## Determinism guarantees
+
+- Two runs over the same input produce byte-identical output.
+- JSON output uses stable key order and sorted collections.
+- Nothing in the output depends on wall-clock time, locale, or randomness.
+- The Rust engine prints `key: value` lines for the same numbers so
+  `scripts/parity.py` can compare implementations without shared code.
