@@ -89,3 +89,21 @@
   </g>
 
   <g font-family='"Cascadia Mono", "JetBrains Mono", Consolas, monospace' font-size="11" fill="#5E6B5A">
+    <text x="16" y="104">320400000</text>
+    <text x="259" y="104" text-anchor="middle">320400030</text>
+    <text x="486" y="104" text-anchor="end">320400060</text>
+  </g>
+
+  <g stroke="#33302B" stroke-width="1">
+    <rect x="16" y="145" width="8" height="8" fill="#F7F3EC"/>
+    <rect x="101" y="145" width="8" height="8" fill="#5E6B5A"/>
+    <rect x="180" y="145" width="8" height="8" fill="#DED8CD"/>
+    <rect x="252" y="145" width="8" height="8" fill="#F7F3EC"/>
+  </g>
+  <g font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#33302B">
+    <text x="28" y="153">finalized</text>
+    <text x="113" y="153">orphaned</text>
+    <text x="192" y="153">skipped</text>
+    <text x="264" y="153">duplicated</text>
+  </g>
+</svg>
