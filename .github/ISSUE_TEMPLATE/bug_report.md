@@ -29,3 +29,12 @@ Smallest input that shows it (a few JSONL lines are usually enough):
 Paste the output verbatim, including the `FINDINGS:` line:
 
 ```
+
+```
+
+**Environment**
+
+- OS:
+- Python version (`python --version`):
+- Rust version (`rustc --version`) if the engine is involved:
+- Which implementation: Python / Rust / both differ
