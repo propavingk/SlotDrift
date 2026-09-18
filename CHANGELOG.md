@@ -71,3 +71,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Per-leader skip rates and the `leaders` subcommand.
 
 ## [0.2.0] - 2016-09-06
+
+### Added
+
+- Duplicate slot detection.
+- Parent anomaly rules: absent parents, forward parents and step overs.
+
+## [0.1.0] - 2015-04-14
+
+### Added
+
+- First release: JSONL slot record model and window continuity analysis.
+- Line-oriented text report with a findings total.
