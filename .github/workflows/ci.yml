@@ -38,3 +38,13 @@ jobs:
   parity:
     name: Cross-engine parity
     runs-on: ubuntu-latest
+    needs: [python, rust]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+      - name: Compare engines on the fixtures
+        run: python scripts/parity.py
