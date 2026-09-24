@@ -70,7 +70,7 @@ A produced block is anomalous when:
 - its parent is below the previous slot and the slots in between are not all
   marked skipped (a step over produced slots).
 
-A parent below the window is not an anomaly: a window always starts mid chain.
+A parent below the window is not an anomaly: a window always starts mid chain. The first block of every export therefore reports a parent outside the window, and that is recorded as expected rather than flagged.
 
 ### Canonical chain
 
