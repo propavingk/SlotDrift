@@ -565,6 +565,7 @@ No dates, and nothing here is promised. In rough priority order:
 | orphan | a produced block outside the canonical walk |
 | orphan segment | a run of orphaned blocks connected by parent links, with one attachment point |
 | window | the range from the smallest to the largest slot present in the export |
+| boundary parent | the parent of the first block in a window; it sits below the window and is never flagged |
 | finding | a condition the report counts toward the exit code |
 
 ---
