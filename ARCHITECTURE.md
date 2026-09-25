@@ -41,7 +41,9 @@ lines listed at the end.
 Validation is strict about fields that carry meaning (slot, parent,
 commitment, tx_count ranges, skipped records carrying no blockhash) and
 liberal about unknown keys, because exports recorded by different harnesses
-add fields that this tool has no opinion about.
+add fields that this tool has no opinion about. Collecting errors instead of
+raising is also what lets a damaged export still produce a useful report;
+the alternative, failing fast, hides the records that did parse.
 
 ### continuity.py
 
