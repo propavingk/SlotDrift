@@ -136,7 +136,7 @@ a cut list always prints how many entries were omitted.
 | `leaders` | object | leader name to `scheduled`, `skipped`, `produced`, `skip_rate` |
 | `parse_errors` | array | objects with `line` and `message` |
 
-Adding keys is a minor change. Renaming or removing a key needs a changelog
+Adding keys is a minor change. A consumer that pins the report should read `lamports_per_byte` before comparing totals, because a rate change moves every minimum in the file. Renaming or removing a key needs a changelog
 entry, because consumers diff this output in CI.
 
 ## Exit codes
